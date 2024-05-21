@@ -44,6 +44,8 @@ CSRF_TRUSTED_ORIGINS = [
     'https://localhost:8000',
 ]
 
+SESSION_COOKIE_AGE = 86400
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -69,6 +71,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'login.middleware.PersistentLoginMiddleware',
 ]
 
 ROOT_URLCONF = 'recipe_app.urls'
