@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     '.herokuapp.com',
@@ -35,6 +35,14 @@ ALLOWED_HOSTS = [
     '8000-davidb3rgqvist-project4-5qsxfwrtxno.ws-eu114.gitpod.io' 
 ]
 
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home'
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://8000-davidb3rgqvist-project4-5qsxfwrtxno.ws-eu114.gitpod.io',
+    'https://127.0.0.1:8000',
+    'https://localhost:8000',
+]
 
 # Application definition
 

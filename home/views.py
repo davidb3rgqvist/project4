@@ -1,7 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
-# Create your views here.
-def home_recipe(request):
-    return HttpResponse("This would be the find home page")
-
+@login_required
+def home(request):
+    return render(request, 'home/home.html')
