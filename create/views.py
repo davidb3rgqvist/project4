@@ -1,7 +1,12 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from .forms import RecipeForm
 
-
-# Create your views here.
-def create_recipe(request):
-    return HttpResponse("This would be the create recipe page")
+def create_view(request):
+    if request.method == 'POST':
+        form = RecipeForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('home_view')
+    else:
+        form = RecipeForm()
+    return render(request, 'create/create.html', {'form': form})

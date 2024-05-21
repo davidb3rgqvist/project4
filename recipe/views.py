@@ -1,8 +1,10 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404
+from .models import Recipe
 
+def recipe_list(request):
+    recipes = Recipe.objects.all()
+    return render(request, 'recipe/recipe_list.html', {'recipes': recipes})
 
-# Create your views here.
-def recipe_view(request):
-    return HttpResponse("This would be the view recipe page")
-
+def recipe_detail(request, id):
+    recipe = get_object_or_404(Recipe, id=id)
+    return render(request, 'recipe/recipe_detail.html', {'recipe': recipe})
