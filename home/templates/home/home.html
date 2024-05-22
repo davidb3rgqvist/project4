@@ -6,8 +6,19 @@
     <h1>Welcome to the Recipe App</h1>
     <p>Here you can find and share your favorite recipes.</p>
 
-    <!-- Add the Create Recipe button -->
-    <a href="{% url 'create' %}">
-        <button type="button">Create Recipe</button>
-    </a>
+    <h2>Featured Recipes</h2>
+    <section class="recipes">
+      <ul>
+        {% for recipe in recipes %}
+          <li>
+            <a href="{% url 'recipe_detail' recipe.pk %}">
+              <h2>{{ recipe.title }}</h2>
+              <img src="{{ recipe.photo.url }}" alt="{{ recipe.title }}">
+              <p>{{ recipe.description|truncatechars:150 }}</p>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+    
 {% endblock %}
