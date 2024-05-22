@@ -38,6 +38,7 @@ ALLOWED_HOSTS = [
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 
+
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-davidb3rgqvist-project4-5qsxfwrtxno.ws-eu114.gitpod.io',
     'https://127.0.0.1:8000',
@@ -71,6 +72,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'login.middleware.PersistentLoginMiddleware',
+    'recipe_app.middleware.LoginRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'recipe_app.urls'

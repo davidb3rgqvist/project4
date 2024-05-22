@@ -6,14 +6,41 @@
     <h2>Login</h2>
     <form method="post">
         {% csrf_token %}
-        {{ login_form.username.errors }}
-        <label for="id_username">Username:</label>
-        {{ form.username }}
-        <br>
-        {{ form.password.errors }}
-        <label for="id_password">Password:</label>
-        {{ form.password }}
-        <br>
+        <!-- General form errors -->
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger">
+                {% for error in form.non_field_errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <!-- Username field and errors -->
+        <div class="form-group">
+            <label for="id_username">Username:</label>
+            {{ form.username }}
+            {% if form.username.errors %}
+                <div class="alert alert-danger">
+                    {% for error in form.username.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Password field and errors -->
+        <div class="form-group">
+            <label for="id_password">Password:</label>
+            {{ form.password }}
+            {% if form.password.errors %}
+                <div class="alert alert-danger">
+                    {% for error in form.password.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
         <button type="submit">Log in</button>
     </form>
 

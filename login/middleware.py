@@ -1,6 +1,7 @@
 from django.utils import timezone
 from django.conf import settings
 
+
 class PersistentLoginMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
