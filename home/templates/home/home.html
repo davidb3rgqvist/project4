@@ -7,12 +7,22 @@
     <p>Here you can find and share your favorite recipes.</p>
 
     <h2>Featured Recipes</h2>
-    <section class="recipes">
-      <ul>
+    <div class="row gx-4 gx-lg-5">
         {% for recipe in recipes %}
-            <li>{{ recipe.title }} - {{ recipe.created_at }}</li>
+            <div class="col-md-4 mb-5">
+                <div class="card h-100">
+                    {% if recipe.photo %}
+                        <img src="{{ recipe.photo.url }}" class="card-img-top" alt="Recipe Photo">
+                    {% endif %}
+                    <div class="card-body">
+                        <h2 class="card-title">{{ recipe.title }}</h2>
+                        <p class="card-text">{{ recipe.ingredients }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <a class="btn btn-primary btn-sm" href="{% url 'recipe_detail' recipe.id %}">More Info</a>
+                    </div>
+                </div>
+            </div>
         {% endfor %}
-    </ul>
-    </section>
-    
+    </div>
 {% endblock %}

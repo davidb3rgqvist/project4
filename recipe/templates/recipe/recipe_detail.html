@@ -1,14 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ recipe.title }}</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title %}{{ recipe.title }}{% endblock %}
+
+{% block content %}
     <h1>{{ recipe.title }}</h1>
-    <p><strong>Ingredients:</strong> {{ recipe.ingredients }}</p>
-    <p><strong>Steps:</strong> {{ recipe.steps }}</p>
-    <p><strong>Tags:</strong> {{ recipe.tags }}</p>
-    <!-- Add photo display if needed -->
-</body>
-</html>
+    <p>{{ recipe.ingredients }}</p>
+    <p>{{ recipe.steps }}</p>
+    <p>{{ recipe.tags }}</p>
+    <p>{{ recipe.is_public }}</p>
+    {% if recipe.photo %}
+        <img src="{{ recipe.photo.url }}" alt="Recipe Photo">
+    {% endif %}
+{% endblock %}

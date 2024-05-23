@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from create.models import Recipe
+from recipe.models import Recipe
 
 def home_view(request):
     recipes = Recipe.objects.filter(is_public=True).order_by('-created_at')[:3]

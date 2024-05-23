@@ -1,15 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Recipe List</title>
-</head>
-<body>
-    <h1>Recipe List</h1>
-    <ul>
+{% extends 'base.html' %}
+{% block title %}Recipe List{% endblock %}
+
+{% block content %}
+    <h1>Recipes</h1>
+    <div class="row gx-4 gx-lg-5">
         {% for recipe in recipes %}
-            <li><a href="{% url 'recipe_detail' recipe.id %}">{{ recipe.title }}</a></li>
+            <div class="col-md-4 mb-5">
+                <div class="card h-100">
+                    {% if recipe.photo %}
+                        <img src="{{ recipe.photo.url }}" class="card-img-top" alt="Recipe Photo">
+                    {% endif %}
+                    <div class="card-body">
+                        <h2 class="card-title">{{ recipe.title }}</h2>
+                        <p class="card-text">{{ recipe.ingredients }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <a class="btn btn-primary btn-sm" href="{% url 'recipe_detail' recipe.id %}">More Info</a>
+                    </div>
+                </div>
+            </div>
         {% endfor %}
-    </ul>
-</body>
-</html>
+    </div>
+{% endblock %}
