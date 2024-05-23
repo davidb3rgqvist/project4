@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Recipe
+from home.models import Recipe
 
 def recipe_list(request):
     recipes = Recipe.objects.all()
