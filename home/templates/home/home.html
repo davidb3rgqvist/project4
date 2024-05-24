@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load cloudinary %}
+{% load static %}
 
 {% block title %}Home{% endblock %}
 
@@ -11,9 +13,13 @@
         {% for recipe in recipes %}
             <div class="col-md-4 mb-5">
                 <div class="card h-100">
-                    {% if recipe.photo %}
-                        <img src="{{ recipe.photo.url }}" class="card-img-top" alt="Recipe Photo">
-                    {% endif %}
+                    <div class="image-container">
+                        {% if recipe.photo %}
+                            <img src="{% cloudinary recipe.photo.url transformation %}" class="card-img-top" alt="Recipe Photo">
+                        {% else %}
+                            <img src="{% static 'images/default.jpg' %}" class="card-img-top" alt="Default Image">
+                        {% endif %}
+                    </div>
                     <div class="card-body">
                         <h2 class="card-title">{{ recipe.title }}</h2>
                         <p class="card-text">{{ recipe.ingredients }}</p>

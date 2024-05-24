@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+{% load cloudinary %}
+{% load static %}
+
 {% block title %}{{ recipe.title }}{% endblock %}
 
 {% block content %}
@@ -7,7 +10,11 @@
     <p>{{ recipe.steps }}</p>
     <p>{{ recipe.tags }}</p>
     <p>{{ recipe.is_public }}</p>
-    {% if recipe.photo %}
-        <img src="{{ recipe.photo.url }}" alt="Recipe Photo">
-    {% endif %}
+    <div class="image-container">
+        {% if recipe.photo %}
+            <img src="{% cloudinary recipe.photo.url transformation %}" alt="Recipe Photo">
+        {% else %}
+            <img src="{% static 'images/default.jpg' %}" alt="Default Image">
+        {% endif %}
+    </div>
 {% endblock %}
