@@ -14,6 +14,8 @@ class Recipe(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     created_at = models.DateTimeField(default=timezone.now)
 
+    likes = models.ManyToManyField(User, related_name='liked_recipes', blank=True)
+
     def __str__(self):
         return self.title
     

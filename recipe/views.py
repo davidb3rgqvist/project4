@@ -5,11 +5,10 @@ from .models import Recipe
 from django.contrib import messages
 
 
-
-
 def recipe_detail(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
     return render(request, 'recipe/recipe_detail.html', {'recipe': recipe})
+
 
 def recipe_list(request):
     recipes = Recipe.objects.all()
@@ -36,22 +35,6 @@ def create_recipe(request):
     else:
         form = RecipeForm()
     return render(request, 'recipe/create.html', {'form': form})
-
-
-
-# def upload_photo(request):
-#     if request.method == 'POST':
-#         form = PhotoForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('photo_list')
-#     else:
-#         form = PhotoForm()
-#     return render(request, 'upload_photo.html', {'form': form})
-
-# def photo_list(request):
-#     photos = Photo.objects.all()
-#     return render(request, 'photo_list.html', {'photos': photos})
 
 
 @login_required
@@ -83,3 +66,11 @@ def delete_recipe(request, recipe_id):
         recipe.delete()
         return redirect('recipe_list')
     return render(request, 'recipe/delete.html', {'recipe': recipe})
+
+@login_required
+def like_recipe(request, recipe_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+    if request.method == 'POST':
+        # Add the current user to the likes of the recipe
+        recipe.likes.add(request.user)
+    return redirect('recipe_detail', recipe_id=recipe_id)

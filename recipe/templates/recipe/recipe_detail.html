@@ -9,6 +9,13 @@
     <p>{{ recipe.steps }}</p>
     <p>{{ recipe.tags }}</p>
     <p>{{ recipe.is_public }}</p>
+    <p>{{ recipe.likes.count }}</p>
+    {% if user.is_authenticated and not user == recipe.user %}
+    <form method="post" action="{% url 'like_recipe' recipe_id=recipe.id %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Like</button>
+    </form>
+    {% endif %}
     <div class="image-container">
         {% if "placeholder" in recipe.photo.url %}
             <img class="card-img-top" src="{% static 'images/default.jpg' %}" alt="placeholder image">
@@ -25,3 +32,4 @@
     </form>
     {% endif %} 
 {% endblock %}
+

@@ -1,112 +1,165 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# WordStream
 
-Welcome David Bergqvist,
+WordStream: French Edition is an engaging language learning game designed to help you master essential French vocabulary effortlessly. Immerse yourself in the game, learn the top 1000 words, and watch your language skills flow with ease.
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+- [Deployed page](https://davidb3rgqvist.github.io/project2/)
 
-You can safely delete this README.md file or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **April 26, 2024**
+![Responsive test](docs/responsive-test.png)
 
-## Gitpod Reminders
+## Table of Contents
+  - [UX - Five Planes](#ux---five-planes)
+  - [Future Features](#future-features)
+  - [Technology Used](#technology-used)
+  - [Testing](#testing)
+  - [Development](#development)
+  - [Deployment](#deployment)
+  - [Credits](#credits)
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+## UX - Five Planes
 
-`python3 -m http.server`
+### Strategy:
 
-A blue button should appear to click: _Make Public_,
+WordStream is a language learning game designed to help users master the 1000 most common French words for effective language acquisition. The game focuses on providing an interactive and engaging learning experience, aiming to kickstart users' ability to speak French.
 
-Another blue button should appear to click: _Open Browser_.
+#### User Goals:
 
-To run a backend Python file, type `python3 app.py` if your Python file is named `app.py`, of course.
+- **Learn Core Vocabulary:** Users aim to master the 1000 most common French words to kickstart their ability to speak the language.
+- **Effective Learning:** Users seek an efficient and effective learning experience, acquiring words gradually through practice.
+- **Interactive Learning:** Users are looking for an interactive and engaging method to enhance their language skills.
 
-A blue button should appear to click: _Make Public_,
+#### Owner Goals:
 
-Another blue button should appear to click: _Open Browser_.
+- **User Retention:** The primary goal is to keep users engaged and motivated to continue their language learning journey.
+- **Educational Impact:** The owner aims to contribute positively to users' language acquisition.
+- **User Satisfaction:** Ensuring that users find the game enjoyable and beneficial for language learning
 
-By Default, Gitpod gives you superuser security privileges. Therefore, you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+### Scope:
 
-To log into the Heroku toolbelt CLI:
+- **Learning Mechanism:** The primary function is to present users with French-English word pairs for learning.
+- **Feedback System:** Provide instant feedback on correct and incorrect answers, reinforcing learning.
+- **Replayability:** Allow users to play the game repeatedly to reinforce vocabulary and improve retention.
+- **Shuffling Words:** Implement a mechanism to shuffle words on page reload, providing a fresh learning experience.
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+![Screen shots of the pages with comments](docs/comments.png)
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you, so do not share it. If you accidentally make it public, you can create a new one with _Regenerate API Key_.
+### Structure:
 
-------
+- **Flashcard Interface:** Use a flashcard format to present words, focusing on one word at a time for effective learning.
+- **User Input:** Incorporate a text input for users to type their answers.
+- **Feedback Display:** Display a visual cue (e.g., green flash) for correct answers and provide the correct word on mistakes.
+- **Audio Feedback:** Include the option for users to listen to the correct pronunciation.
 
-## Release History
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+### Skeleton:
+- **Start Button:** Initiate the game with a "Start Game" button.
+- **User Input Field:** Allow users to type their answers.
+- **Submit Button:** Trigger the evaluation of user input.
+- **Correct/Wrong Display:** Visually indicate correct and incorrect answers.
+- **Play Again Button:** Provide an option to restart the game.
+- **Exit to Scoreboard Button:** Allow users to view their high scores.
 
-**April 26 2024:** Update node version to 16
+![Wireframe link](docs/wireframe.png)
 
-**September 20 2023:** Update Python version to 3.9.17.
+### Surface:
+- **Visual Design:** Use a visually appealing and intuitive design to enhance the overall user experience.
+- **Color Scheme:** Employ a color scheme that is both engaging and comfortable for extended usage.
+- **Responsive Design:** Ensure the game is accessible and functional across various devices.
+- **Audio Feedback:** Incorporate audio elements for the correct word and word pronunciation.
+- **Clear Typography:** Use clear and readable fonts for an optimal reading experience.
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+![Visual ID](docs/wordstream-vi.png)
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+## Future Features
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+We plan to enhance the website with the following features:
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+- More languages.
+- Filter option to be able the practice the words the the user  finds harder.
+- Top ten user highscore.
+- 3d effect when flipping the flashcards.
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+## Technology Used
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+- Front-end: HTML, CSS, JavaScript
+- Figma for wireframes
+- ChatGPT - for AI assistance
+- Adobe Photoshop for image editing
+- Adobe express for image content
+- Adobe Illustrator for graphic content
+- www.w3.org: Utilized to perform validation test of HTML and CSS.
+- https://jshint.com/: Utilized to perform validation test of JavaScript.
+- https://ui.dev/amiresponsive: Utilized for a quick overview of the responsivness.
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+## Testing
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+Testing was an integral part of the website development process. We performed comprehensive tests across various devices and screen sizes to ensure a seamless user experience. This included functional testing to verify proper functionality of all features, as well as responsive testing to guarantee optimal display on different devices. Additionally we performed serval validation tests.
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+- [HTML Validation of index.html, no errors found](docs/index-validation.png)
+- [CSS Validation of style.css, no errors found](docs/css-validation.png)
+- [JavaScript Validation, no errors found](docs/javascript-validation.png)
+- [Lighthouse report](docs/lighthouse-report.png)
+- [Responsiveness overview](docs/responsive-test.png)
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+## Development
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+In crafting WordStream Learning, our development journey revolved around harnessing the power of HTML5, CSS3, and JavaScript. These technologies served as the backbone, providing a solid foundation for the website's structure, style, and interactive features. Our approach embraced a mobile-first philosophy, ensuring a seamless experience across various devices. To bring our vision to life, we leveraged Figma for meticulous UI/UX design and relied on Git and GitHub for effective version control.
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+As we chart the course for future development, we've identified key areas that can further enrich the WordStream Learning experience:
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+- **User-Centric Enhancements:** Place a premium on user feedback to enhance the overall user experience. Consider implementing user registration, profile management, and avenues for user-generated content, fostering a more personalized connection.
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+- **Feature Expansion:** Enrich the platform by introducing advanced search filters, seamless integration with social media platforms, and engaging features such as forums or challenges. These additions will contribute to a vibrant and interactive community.
 
-------
+- **Improving Accessibility:** Strive for inclusivity by ensuring adherence to accessibility standards, catering to users with diverse needs and disabilities.
 
-## FAQ about the uptime script
+- **Continual Testing and Optimization:** Uphold a commitment to excellence through an ongoing testing strategy. Identify and address bugs, enhance performance, and validate design changes to ensure a polished user experience.
 
-**Why have you added this script?**
+- **Community Engagement:** Cultivate a sense of community by encouraging user-driven content creation. Welcome feedback with open arms and respond promptly to user queries or concerns, fostering a responsive and vibrant community.
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+- **Security Measures:** Fortify the platform with robust security measures. Safeguard user data, mitigate potential vulnerabilities, and proactively prevent security breaches to uphold user trust.
 
-**How will this affect me?**
+By embracing these strategic steps, our vision for WordStream Learning is not just a website but a dynamic hub for language learning. This roadmap emphasizes user-centric design, feature richness, accessibility, continuous improvement, community engagement, and robust security. As we embark on this journey, we remain committed to delivering a learning experience that goes beyond expectations.
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+## Deployment
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+[Deployed page](https://davidb3rgqvist.github.io/project2/)
+The deployment process involved leveraging GitHub Pages, an integrated service provided by GitHub, to publish the website directly from the project's repository. Here are the steps for deployment:
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+1. **GitHub Repository:** The Free Gym Locator's codebase resides in a GitHub repository. - [Repository](https://github.com/davidb3rgqvist/project2)
+   
+2. **Branch Setup:** Utilizing the default 'main' branch to host the deployable code.
 
-**So….?**
+3. **Configuration:** Configuring the repository settings within the GitHub repository's settings page to select the branch to deploy.
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+4. **GitHub Pages:** Enabling GitHub Pages from the repository settings to initiate the deployment process.
 
-**Can I opt out?**
+5. **Verification:** Verifying the deployment status and ensuring the website is live and accessible at the specified GitHub Pages URL.
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+### Accessing the Deployed Site
 
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
+The deployed WordStream website can be accessed using the following URL: [https://davidb3rgqvist.github.io/project2/](https://davidb3rgqvist.github.io/project2/)
 
-**Anything more?**
+The GitHub Pages deployment offers a convenient way to share the WordStream website with users globally.
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+Feel free to explore the live version of the WordStream game.
 
----
+## Credits
 
-Happy coding!
+The development and creation of the WordStream website would not have been possible without the contributions, support, and resources from various individuals and organizations. We would like to extend our gratitude and credit to the following:
+
+### Open-Source Libraries
+
+- **Google Fonts:** Used for typography and font styles across the website.
+- **Font Awesome:** Provided icons used for navigation the play button, enhancing user experience.
+- **Code Institute:** Primary educational content encompassing comprehensive videos elucidating HTML, CSS, UX and JavaScript. Mainly from the "Love Math Walktrough Project". 
+
+### External Resources
+
+- **Adobe Express:** Provided high-quality images used throughout the website.
+- **GitHub:** Facilitated version control and hosting of the project with GitHub Pages.
+
+### Inspirations and Mentors
+
+- **Brian O'Hare / Code Institute:** Provided guidance, mentorship, or inspiration during the project's development.
+
+We express our sincere appreciation to everyone who contributed directly or indirectly to WordStream project, helping shape and enhance this platform for users seeking to learn 1000 french words in a quick and fun way.
