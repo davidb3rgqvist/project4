@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
-from .forms import RecipeForm
-from .models import Recipe
+from .forms import RecipeForm, PhotoForm
+from .models import Recipe, Photo
 from django.contrib import messages
 
 
@@ -33,3 +33,18 @@ def create_recipe(request):
     else:
         form = RecipeForm()
     return render(request, 'recipe/create.html', {'form': form})
+
+
+def upload_photo(request):
+    if request.method == 'POST':
+        form = PhotoForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('photo_list')
+    else:
+        form = PhotoForm()
+    return render(request, 'upload_photo.html', {'form': form})
+
+def photo_list(request):
+    photos = Photo.objects.all()
+    return render(request, 'photo_list.html', {'photos': photos})

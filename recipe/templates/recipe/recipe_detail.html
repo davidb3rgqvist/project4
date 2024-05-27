@@ -11,10 +11,10 @@
     <p>{{ recipe.tags }}</p>
     <p>{{ recipe.is_public }}</p>
     <div class="image-container">
-        {% if recipe.photo %}
-            <img src="{% cloudinary recipe.photo.url transformation %}" alt="Recipe Photo">
+        {% if "placeholder" in recipe.photo.url %}
+            <img class="card-img-top" src="{% static 'images/default.jpg' %}" alt="placeholder image">
         {% else %}
-            <img src="{% static 'images/default.jpg' %}" alt="Default Image">
+            <img class="card-img-top" src="{{ recipe.photo.url }}" alt="{{ recipe.title }}">
         {% endif %}
     </div>
 {% endblock %}

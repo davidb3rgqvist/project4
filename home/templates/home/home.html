@@ -13,22 +13,21 @@
         {% for recipe in recipes %}
             <div class="col-md-4 mb-5">
                 <div class="card h-100">
-                    <div class="image-container">
-                        {% if recipe.photo %}
-                            <img src="{% cloudinary recipe.photo.url transformation %}" class="card-img-top" alt="Recipe Photo">
-                        {% else %}
-                            <img src="{% static 'images/default.jpg' %}" class="card-img-top" alt="Default Image">
-                        {% endif %}
-                    </div>
+                    {% if "placeholder" in recipe.photo.url %}
+                        <img class="card-img-top" src="{% static 'images/default.jpg' %}" alt="placeholder image">
+                    {% else %}
+                        <img class="card-img-top" src="{{ recipe.photo.url }}" alt="{{ recipe.title }}">
+                    {% endif %}
                     <div class="card-body">
                         <h2 class="card-title">{{ recipe.title }}</h2>
                         <p class="card-text">{{ recipe.ingredients }}</p>
                     </div>
                     <div class="card-footer">
-                        <a class="btn btn-primary btn-sm" href="{% url 'recipe_detail' recipe.id %}">More Info</a>
+                        <a href="{% url 'recipe_detail' recipe.id %}" class="btn btn-primary btn-sm">View Recipe</a>
                     </div>
                 </div>
             </div>
         {% endfor %}
     </div>
+
 {% endblock %}

@@ -14,7 +14,7 @@
                         {% if "placeholder" in recipe.photo.url %}
                             <img class="card-img-top" src="{% static 'images/default.jpg' %}" alt="placeholder image">
                         {% else %}
-                            <img class="card-img-top" src="{% cloudinary recipe.photo.url transformation %}" alt="{{ recipe.title }}">
+                            <img class="card-img-top" src="{{ recipe.photo.url }}" alt="{{ recipe.title }}">
                         {% endif %}
                         <div class="image-flash"></div>
                     </div>
@@ -29,4 +29,5 @@
             </div>
         {% endfor %}
     </div>
+    
 {% endblock %}
