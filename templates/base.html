@@ -41,6 +41,9 @@
                 </ul>
             </div>
         </div>
+        {% if request.user.is_authenticated %}
+        <p class="m-0 text-center text-white">Logged in as: {{ request.user }}</p>
+    {% endif %}
     </nav>
 
     <!-- Page Content-->

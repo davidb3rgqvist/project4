@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load cloudinary %}
 {% load static %}
 
 {% block title %}{{ recipe.title }}{% endblock %}
@@ -17,4 +16,12 @@
             <img class="card-img-top" src="{{ recipe.photo.url }}" alt="{{ recipe.title }}">
         {% endif %}
     </div>
+
+    {% if request.user == recipe.user %}
+    <a href="{% url 'update_recipe' recipe_id=recipe.id %}" class="btn btn-primary">Edit Recipe</a>
+    <form action="{% url 'delete_recipe' recipe_id=recipe.id %}" method="post" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete Recipe</button>
+    </form>
+    {% endif %} 
 {% endblock %}
