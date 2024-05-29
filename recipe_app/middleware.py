@@ -14,5 +14,5 @@ class LoginRequiredMiddleware:
 
     def __call__(self, request):
         if not request.user.is_authenticated and request.path not in EXCLUDED_PATHS:
-            return redirect('login')  # Redirect to login_view if not authenticated
+            return redirect('login')
         return self.get_response(request)

@@ -1,21 +1,26 @@
 from django import forms
+from django.forms import inlineformset_factory
 from cloudinary.forms import CloudinaryFileField
+from django_summernote.widgets import SummernoteWidget
 from recipe.models import Recipe
 from .models import Photo
 
-class RecipeForm(forms.ModelForm):
-    photo = CloudinaryFileField()
 
+# class IngredientForm(forms.ModelForm):
+#     class Meta:
+#         model = Ingredient
+#         fields = ['name', 'quantity']
+
+
+# IngredientFormSet = inlineformset_factory(Recipe, Ingredient, form=IngredientForm, extra=1)
+
+
+class RecipeForm(forms.ModelForm):
     class Meta:
         model = Recipe
-        fields = ['title', 'ingredients', 'steps', 'photo', 'tags', 'is_public']
+        fields = ['title', 'description', 'ingredients', 'steps', 'photo', 'tags', 'is_public']
         widgets = {
-            'ingredients': forms.Textarea(attrs={'rows': 4}),
-            'steps': forms.Textarea(attrs={'rows': 4}),
+            'description': SummernoteWidget(),
+            'steps': SummernoteWidget(),
+            'ingredients': SummernoteWidget(),
         }
-
-
-class PhotoForm(forms.ModelForm):
-    class Meta:
-        model = Photo
-        fields = ['image', 'title', 'description']

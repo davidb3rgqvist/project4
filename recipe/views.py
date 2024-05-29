@@ -14,27 +14,32 @@ def recipe_list(request):
     recipes = Recipe.objects.all()
     return render(request, 'recipe/recipe_list.html', {'recipes': recipes})
 
+
 @login_required
 def create_recipe(request):
     if request.method == 'POST':
-        form = RecipeForm(request.POST, request.FILES)
-        if form.is_valid():
+        recipe_form = RecipeForm(request.POST, request.FILES)
+        # ingredient_formset = IngredientFormSet(request.POST, prefix='ingredients')
 
-            new_recipe = Recipe.objects.create(
-                title=form.cleaned_data['title'],
-                ingredients=form.cleaned_data['ingredients'],
-                steps=form.cleaned_data['steps'],
-                photo=form.cleaned_data['photo'],
-                user = request.user,
-                tags=form.cleaned_data['tags'],
-                is_public=form.cleaned_data['is_public'],
-            )
+        if recipe_form.is_valid(): # and ingredient_formset.is_valid():
+            recipe = recipe_form.save(commit=False)
+            recipe.user = request.user
+            recipe.save()
 
+            # for form in ingredient_formset:
+            #     ingredient = form.save(commit=False)
+            #     ingredient.recipe = recipe
+            #     ingredient.save()
 
-            return redirect('recipe_detail', recipe_id=new_recipe.id)
+            return redirect('recipe_list')
     else:
-        form = RecipeForm()
-    return render(request, 'recipe/create.html', {'form': form})
+        recipe_form = RecipeForm()
+        # ingredient_formset = IngredientFormSet(prefix='ingredients')
+
+    return render(request, 'recipe/create.html', {
+        'recipe_form': recipe_form,
+        # 'ingredient_formset': ingredient_formset,
+    })
 
 
 @login_required
@@ -54,6 +59,7 @@ def update_recipe(request, recipe_id):
         form = RecipeForm(instance=recipe)
     return render(request, 'recipe/update_recipe.html', {'form': form, 'recipe': recipe})
 
+
 @login_required
 def delete_recipe(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
@@ -67,10 +73,10 @@ def delete_recipe(request, recipe_id):
         return redirect('recipe_list')
     return render(request, 'recipe/delete.html', {'recipe': recipe})
 
+
 @login_required
 def like_recipe(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
     if request.method == 'POST':
-        # Add the current user to the likes of the recipe
         recipe.likes.add(request.user)
     return redirect('recipe_detail', recipe_id=recipe_id)

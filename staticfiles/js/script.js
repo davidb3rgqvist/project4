@@ -10,3 +10,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
         });
     }
 });
+
+
+$(document).ready(function() {
+    $('#summernote').summernote();
+});
+

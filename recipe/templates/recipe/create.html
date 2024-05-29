@@ -1,14 +1,72 @@
 {% extends 'base.html' %}
-{% load cloudinary %}
+
 {% load static %}
 
 {% block title %}Create Recipe{% endblock %}
 
 {% block content %}
-<h1>Create Recipe</h1>
-<form method="post" enctype="multipart/form-data">
+<h1 class="mb-3 mt-5">Create Recipe</h1>
+
+<form id="recipeForm" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save Recipe</button>
+    {{ recipe_form.non_field_errors }}
+    
+    <div class="mb-3">
+        {{ recipe_form.title.label_tag }}
+        {{ recipe_form.title }}
+    </div>
+    <div class="mb-3">
+        {{ recipe_form.description.label_tag }}
+        {{ recipe_form.description }}
+    </div>
+    <div class="mb-3">
+        {{ recipe_form.ingredients.label_tag }}
+        {{ recipe_form.ingredients }}
+    </div>
+    <div class="mb-3">
+        {{ recipe_form.steps.label_tag }}
+        {{ recipe_form.steps }}
+    </div>
+    <div class="mb-3">
+        {{ recipe_form.photo.label_tag }}
+        {{ recipe_form.photo }}
+    </div>
+    <div class="mb-3">
+        {{ recipe_form.tags.label_tag }}
+        {{ recipe_form.tags }}
+    </div>
+    <div class="mb-3">
+        {{ recipe_form.is_public.label_tag }}
+        {{ recipe_form.is_public }}
+    </div>
+    <div>
+        <button class="btn btn-primary btn-sm mb-5" type="submit">Save Recipe</button>
+    </div>
 </form>
+
+<!-- <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const addIngredientButton = document.getElementById('add-ingredient');
+    const ingredientFieldsContainer = document.getElementById('ingredient-fields');
+    let ingredientIndex = {{ ingredient_formset.total_form_count }};
+
+    addIngredientButton.addEventListener('click', function() {
+        const ingredientFieldHTML = `
+            <div class="mb-3" id="ingredient-${ingredientIndex}">
+                <div class="row">
+                    <div class="col">
+                        <label for="id_form-${ingredientIndex}-quantity">Quantity:</label>
+                        <input type="text" name="form-${ingredientIndex}-quantity" class="form-control" id="id_form-${ingredientIndex}-quantity">
+                    </div>
+                    <div class="col">
+                        <label for="id_form-${ingredientIndex}-name">Ingredient:</label>
+                        <input type="text" name="form-${ingredientIndex}-name" class="form-control" id="id_form-${ingredientIndex}-name">
+                    </div>
+                </div>
+            </div>`;
+        ingredientFieldsContainer.insertAdjacentHTML('beforeend', ingredientFieldHTML);
+        ingredientIndex++;
+    });
+});
+</script> -->
 {% endblock %}

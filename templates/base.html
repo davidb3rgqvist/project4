@@ -11,12 +11,19 @@
     <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}">
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <!-- Include Summernote CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.css" rel="stylesheet">
 </head>
 <body>
     <!-- Responsive navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container px-5">
             <a class="navbar-brand" href="{% url 'home' %}">My Website</a>
+            <div>
+                {% if request.user.is_authenticated %}
+                    <p class="m-auto p-30 text-center text-white">Logged in as: {{ request.user }}</p>
+                {% endif %}
+            </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -41,9 +48,7 @@
                 </ul>
             </div>
         </div>
-        {% if request.user.is_authenticated %}
-            <p class="m-0 p-30 text-center text-white">Logged in as: {{ request.user }}</p>
-        {% endif %}
+        
     </nav>
 
     <!-- Page Content-->
@@ -71,5 +76,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="{% static 'js/scripts.js' %}"></script>
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include Summernote JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js"></script>
 </body>
 </html>
+
+
+
+
