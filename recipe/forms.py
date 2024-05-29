@@ -3,7 +3,7 @@ from django.forms import inlineformset_factory
 from cloudinary.forms import CloudinaryFileField
 from django_summernote.widgets import SummernoteWidget
 from recipe.models import Recipe
-from .models import Photo
+# from .models import Photo
 
 
 # class IngredientForm(forms.ModelForm):

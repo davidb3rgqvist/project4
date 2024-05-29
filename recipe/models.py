@@ -9,7 +9,13 @@ class Recipe(models.Model):
     description = models.TextField()
     ingredients = models.TextField()
     steps = models.TextField()
-    photo = CloudinaryField('image', default='recipes/default.jpg', blank=True)
+    # Apply resizing transformation to the photo field
+    photo = CloudinaryField(
+        'image',
+        default='recipes/default.jpg',
+        blank=True,
+        transformation={'width': 1000, 'height': 800, 'crop': 'limit'}
+    )
     tags = models.CharField(max_length=200, blank=True)
     is_public = models.BooleanField(default=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
@@ -30,6 +36,9 @@ class Recipe(models.Model):
 
 
 class Photo(models.Model):
-    image = CloudinaryField('image')
+    image = CloudinaryField(
+        'image',
+        transformation={'width': 800, 'height': 600, 'crop': 'limit'}
+    )
     title = models.CharField(max_length=100)
     description = models.TextField()
