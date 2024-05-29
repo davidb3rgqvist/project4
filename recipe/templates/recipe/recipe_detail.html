@@ -4,86 +4,75 @@
 {% block title %}{{ recipe.title }}{% endblock %}
 
 {% block content %}
-    <h1>{{ recipe.title }}</h1>
-    <p>Description: {{ recipe.description }}</p>
-  
-    <h2>Ingredients:</h2>
-    <ul>
-        {% for ingredient in recipe.ingredients_list %}
-            <li>{{ ingredient }}</li>
-        {% endfor %}
-    </ul>
+        <div class="section" id="image-description-section">
+            <div class="toggle-header" onclick="toggleSection('image-description')">
+                <h1>{{ recipe.title }}</h1>
+            </div>
+            <div class="toggle-content" id="image-description">
+                <div class="image-description-container">
+                    <div class="image-container-detail">
+                        {% if "placeholder" in recipe.photo.url %}
+                            <img class="card-img-top" src="{% static 'images/default.jpg' %}" alt="placeholder image">
+                        {% else %}
+                            <img class="card-img-top" src="{{ recipe.photo.url }}" alt="{{ recipe.title }}">
+                        {% endif %}
+                    </div>
+                    <div class="description m-3">
+                        <h5>Description:</h5>
+                        <p>{{ recipe.description | safe }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <h2>Steps:</h2>
-    <div id="summernote-steps">{{ recipe.steps }}</div>
+        <div class="section" id="ingredients-section">
+            <div class="toggle-header" onclick="toggleSection('ingredients')">
+                <h3>Ingredients</h3>
+            </div>
+            <div class="toggle-content" id="ingredients">
+                <p class="m-3">{{ recipe.ingredients | safe }}</p>
+            </div>
+        </div>
 
-    <style>
-        .highlighted {
-            background-color: yellow;
-        }
-    </style>
+        <div class="section" id="steps-section">
+            <div class="toggle-header" onclick="toggleSection('steps')">
+                <h3>Steps</h3>
+            </div>
+            <div class="toggle-content" id="steps">
+                <p class="m-3">{{ recipe.steps | safe }}</p>
+            </div>
+        </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.css" rel="stylesheet">
-
-    <script>
-        $(document).ready(function() {
-            var ingredients = "{{ recipe.ingredients }}".split("\n");
-            var prepopulatedSteps = "";
-            for (var i = 0; i < ingredients.length; i++) {
-                prepopulatedSteps += "<p><strong>" + ingredients[i] + "</strong></p>";
-            }
-
-            $('#summernote-steps').summernote({
-                height: 300,
-                minHeight: null,
-                maxHeight: null,
-                focus: true,
-                toolbar: [
-                    ['style', ['bold', 'italic', 'underline', 'clear']],
-                    ['font', ['strikethrough', 'superscript', 'subscript']],
-                    ['fontsize', ['fontsize']],
-                    ['color', ['color']],
-                    ['para', ['ul', 'ol', 'paragraph']],
-                    ['height', ['height']]
-                ],
-                callbacks: {
-                    onInit: function() {
-                        var $summernote = $(this);
-                        $summernote.summernote('pasteHTML', prepopulatedSteps);
-                        $('.note-editable p strong').addClass('highlighted');
-                    }
-                }
-            });
-        });
-    </script>
-
-    <p>{{ recipe.tags }}</p>
-    <p>{{ recipe.is_public }}</p>
-    <p>{{ recipe.likes.count }}</p>
-
-    {% if user.is_authenticated and not user == recipe.user %}
-        <form method="post" action="{% url 'like_recipe' recipe_id=recipe.id %}">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-primary">Like {{ recipe.likes.count }}</button>
-        </form>
-    {% endif %}
-
-    <div class="image-container">
-        {% if "placeholder" in recipe.photo.url %}
-            <img class="card-img-top" src="{% static 'images/default.jpg' %}" alt="placeholder image">
-        {% else %}
-            <img class="card-img-top" src="{{ recipe.photo.url }}" alt="{{ recipe.title }}">
-        {% endif %}
-    </div>
-
-    <!-- Edit or delete recipe -->
-    {% if request.user == recipe.user %}
-        <a href="{% url 'update_recipe' recipe_id=recipe.id %}" class="btn btn-primary">Edit Recipe</a>
-        <form action="{% url 'delete_recipe' recipe_id=recipe.id %}" method="post" style="display:inline;">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-danger">Delete Recipe</button>
-        </form>
-    {% endif %} 
+        <div class="section" id="like-comment-section">
+            <div class="toggle-header" onclick="toggleSection('like-comment')">
+                <h5>Likes & Comments</h5>
+            </div>
+            <div class="toggle-content" id="like-comment">
+                {% if user.is_authenticated and not user == recipe.user %}
+                <div class="row justify-align-center">
+                    <div class="col-md">
+                        <form method="post" action="{% url 'like_recipe' recipe_id=recipe.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary">Like {{ recipe.likes.count }}</button>
+                        </form>
+                    </div>
+                </div>
+                {% endif %}
+                
+                <div class="row justify-content-center">
+                    <div class="col-md">
+                        <form method="post" action="{% url 'add_comment' recipe_id=recipe.id %}">
+                            {% csrf_token %}
+                            {{ comment_form.as_p }}
+                            <button class="btn btn-secondary" type="submit">Submit</button>
+                        </form>
+                        <div class="comments m-3">
+                            {% for comment in comments %}
+                                <p>{{ comment.user.username }}: {{ comment.text }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 {% endblock %}

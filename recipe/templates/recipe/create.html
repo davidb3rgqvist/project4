@@ -44,29 +44,4 @@
     </div>
 </form>
 
-<!-- <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const addIngredientButton = document.getElementById('add-ingredient');
-    const ingredientFieldsContainer = document.getElementById('ingredient-fields');
-    let ingredientIndex = {{ ingredient_formset.total_form_count }};
-
-    addIngredientButton.addEventListener('click', function() {
-        const ingredientFieldHTML = `
-            <div class="mb-3" id="ingredient-${ingredientIndex}">
-                <div class="row">
-                    <div class="col">
-                        <label for="id_form-${ingredientIndex}-quantity">Quantity:</label>
-                        <input type="text" name="form-${ingredientIndex}-quantity" class="form-control" id="id_form-${ingredientIndex}-quantity">
-                    </div>
-                    <div class="col">
-                        <label for="id_form-${ingredientIndex}-name">Ingredient:</label>
-                        <input type="text" name="form-${ingredientIndex}-name" class="form-control" id="id_form-${ingredientIndex}-name">
-                    </div>
-                </div>
-            </div>`;
-        ingredientFieldsContainer.insertAdjacentHTML('beforeend', ingredientFieldHTML);
-        ingredientIndex++;
-    });
-});
-</script> -->
 {% endblock %}

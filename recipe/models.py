@@ -26,13 +26,14 @@ class Recipe(models.Model):
         return self.title
 
 
-# class Ingredient(models.Model):
-#     name = models.CharField(max_length=100)
-#     quantity = models.CharField(max_length=50)
-#     recipe = models.ForeignKey(Recipe, related_name='ingredient_list', on_delete=models.CASCADE)
+class Comment(models.Model):
+    recipe = models.ForeignKey(Recipe, related_name='comments', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    text = models.TextField()
+    created_at = models.DateTimeField(default=timezone.now)
 
-#     def __str__(self):
-#         return self.name
+    def __str__(self):
+        return f'{self.user.username}: {self.text}'
 
 
 class Photo(models.Model):

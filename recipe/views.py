@@ -1,13 +1,14 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
-from .forms import RecipeForm
-from .models import Recipe
-from django.contrib import messages
-
+from .models import Recipe, Comment
+from .forms import RecipeForm, CommentForm
 
 def recipe_detail(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
-    return render(request, 'recipe/recipe_detail.html', {'recipe': recipe})
+    comments = recipe.comments.all()
+    comment_form = CommentForm()
+    return render(request, 'recipe/recipe_detail.html', {'recipe': recipe, 'comments': comments, 'comment_form': comment_form})
 
 
 def recipe_list(request):
@@ -78,5 +79,21 @@ def delete_recipe(request, recipe_id):
 def like_recipe(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
     if request.method == 'POST':
-        recipe.likes.add(request.user)
+        if request.user in recipe.likes.all():
+            recipe.likes.remove(request.user)
+        else:
+            recipe.likes.add(request.user)
+        return JsonResponse({'status': 'ok'})
+
+
+@login_required
+def add_comment(request, recipe_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.user = request.user
+            comment.recipe = recipe
+            comment.save()
     return redirect('recipe_detail', recipe_id=recipe_id)
