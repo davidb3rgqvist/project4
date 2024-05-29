@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
-from .models import Recipe, Comment
+from .models import Recipe, Comment, CookbookEntry
 from .forms import RecipeForm, CommentForm
 
 def recipe_detail(request, recipe_id):
@@ -101,3 +101,36 @@ def add_comment(request, recipe_id):
             comment.recipe = recipe
             comment.save()
     return redirect('recipe_detail', recipe_id=recipe_id)
+
+
+@login_required
+def save_to_cookbook(request, recipe_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+    user = request.user
+
+    # Check if the recipe is already saved to the user's cookbook
+    if CookbookEntry.objects.filter(user=user, recipe=recipe).exists():
+        return JsonResponse({'status': 'error', 'message': 'Recipe already saved to cookbook'})
+
+    # Create a new cookbook entry and save it to the database
+    entry = CookbookEntry(user=user, recipe=recipe)
+    entry.save()
+
+    return JsonResponse({'status': 'ok'})
+
+
+@login_required
+def unsave_from_cookbook(request, recipe_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+    user = request.user
+
+    # Check if the recipe is saved to the user's cookbook
+    try:
+        entry = CookbookEntry.objects.get(user=user, recipe=recipe)
+    except CookbookEntry.DoesNotExist:
+        return JsonResponse({'status': 'error', 'message': 'Recipe not found in cookbook'})
+
+    # Delete the cookbook entry
+    entry.delete()
+
+    return JsonResponse({'status': 'ok'})

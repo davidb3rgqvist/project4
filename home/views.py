@@ -14,3 +14,4 @@ def home_view(request):
         'recipes': recipes
     }
     return render(request, 'home/home.html', context)
+    

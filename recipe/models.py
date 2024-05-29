@@ -43,3 +43,12 @@ class Photo(models.Model):
     )
     title = models.CharField(max_length=100)
     description = models.TextField()
+
+
+class CookbookEntry(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+    saved_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.user.username}\'s Cookbook Entry for {self.recipe.title}'
