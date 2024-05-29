@@ -583,7 +583,6 @@ progress {
 
 .image-description-container {
   display: flex;
-  justify-content: space-between;
 }
 
 .image-container-detail {

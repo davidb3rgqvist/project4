@@ -48,24 +48,23 @@
                 <h5>Likes & Comments</h5>
             </div>
             <div class="toggle-content" id="like-comment">
-                {% if user.is_authenticated and not user == recipe.user %}
-                <div class="row justify-align-center">
-                    <div class="col-md">
-                        <form method="post" action="{% url 'like_recipe' recipe_id=recipe.id %}">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-primary">Like {{ recipe.likes.count }}</button>
-                        </form>
-                    </div>
-                </div>
-                {% endif %}
-                
                 <div class="row justify-content-center">
                     <div class="col-md">
                         <form method="post" action="{% url 'add_comment' recipe_id=recipe.id %}">
                             {% csrf_token %}
                             {{ comment_form.as_p }}
-                            <button class="btn btn-secondary" type="submit">Submit</button>
+                            <button class="btn btn-secondary m-1" type="submit">Submit</button>
                         </form>
+                        {% if user.is_authenticated and not user == recipe.user %}
+                            <div class="row justify-align-center">
+                                <div class="col-md">
+                                    <form method="post" action="{% url 'like_recipe' recipe_id=recipe.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-primary m-1">Like {{ recipe.likes.count }}</button>
+                                    </form>
+                                </div>
+                            </div>
+                            {% endif %}
                         <div class="comments m-3">
                             {% for comment in comments %}
                                 <p>{{ comment.user.username }}: {{ comment.text }}</p>
@@ -75,4 +74,11 @@
                 </div>
             </div>
         </div>
+        {% if request.user == recipe.user %}
+        <a href="{% url 'update_recipe' recipe_id=recipe.id %}" class="btn btn-primary">Edit Recipe</a>
+        <form action="{% url 'delete_recipe' recipe_id=recipe.id %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Delete Recipe</button>
+        </form>
+    {% endif %}
 {% endblock %}

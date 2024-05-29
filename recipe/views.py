@@ -20,7 +20,6 @@ def recipe_list(request):
 def create_recipe(request):
     if request.method == 'POST':
         recipe_form = RecipeForm(request.POST, request.FILES)
-        # ingredient_formset = IngredientFormSet(request.POST, prefix='ingredients')
 
         if recipe_form.is_valid(): # and ingredient_formset.is_valid():
             recipe = recipe_form.save(commit=False)
@@ -78,13 +77,18 @@ def delete_recipe(request, recipe_id):
 @login_required
 def like_recipe(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
+    liked = False
+
     if request.method == 'POST':
         if request.user in recipe.likes.all():
             recipe.likes.remove(request.user)
         else:
             recipe.likes.add(request.user)
-        return JsonResponse({'status': 'ok'})
 
+    likes_count = recipe.likes.count()
+    
+    return redirect('recipe_detail', recipe_id=recipe_id)
+    
 
 @login_required
 def add_comment(request, recipe_id):
