@@ -8,7 +8,7 @@ from recipe.models import Recipe, Comment
 class RecipeForm(forms.ModelForm):
     class Meta:
         model = Recipe
-        fields = ['title', 'description', 'ingredients', 'steps', 'photo', 'tags', 'is_public']
+        fields = ['title', 'description', 'ingredients', 'steps', 'photo', 'is_public']
         widgets = {
             'description': SummernoteWidget(),
             'steps': SummernoteWidget(),

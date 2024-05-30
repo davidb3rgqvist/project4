@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import JsonResponse
+# from django.http import JsonResponse
 from django.db.models import Count
 from django.contrib.auth.decorators import login_required
 from .models import Recipe, Comment, CookbookEntry
@@ -9,7 +9,8 @@ def recipe_detail(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
     comments = recipe.comments.all()
     comment_form = CommentForm()
-    return render(request, 'recipe/recipe_detail.html', {'recipe': recipe, 'comments': comments, 'comment_form': comment_form})
+    is_saved = CookbookEntry.objects.filter(user=request.user, recipe=recipe).exists()
+    return render(request, 'recipe/recipe_detail.html', {'recipe': recipe, 'comments': comments, 'comment_form': comment_form, 'is_saved': is_saved,})
 
 
 def recipe_list(request):
@@ -121,19 +122,12 @@ def add_comment(request, recipe_id):
 @login_required
 def save_to_cookbook(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
-    user = request.user
-
-    if not CookbookEntry.objects.filter(user=user, recipe=recipe).exists():
-        entry = CookbookEntry(user=user, recipe=recipe)
-        entry.save()
-
-    return redirect('recipe_detail', recipe_id=recipe.id)
+    if request.user != recipe.user:
+        CookbookEntry.objects.get_or_create(user=request.user, recipe=recipe)
+    return redirect('recipe_detail', recipe_id=recipe_id)
 
 @login_required
 def unsave_from_cookbook(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
-    user = request.user
-
-    CookbookEntry.objects.filter(user=user, recipe=recipe).delete()
-
-    return redirect('recipe_detail', recipe_id=recipe.id)
+    CookbookEntry.objects.filter(user=request.user, recipe=recipe).delete()
+    return redirect('recipe_detail', recipe_id=recipe_id)
