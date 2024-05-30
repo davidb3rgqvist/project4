@@ -12,22 +12,40 @@
 
 <section class="cookbook">
     <h2>My Cookbook</h2>
+
+    <div class="section">
+        <div class="toggle-header" onclick="toggleFilterSection()">
+            <h3>Filter</h3>
+        </div>
+        <div class="toggle-content" id="filter-content" style="display: none;">
+            <div class="filter-section m-3">
+                <form method="get">
+                    <button class="btn btn-secondary btn-sm m-1" type="submit" name="sort_order" value="newest">Newest First</button>
+                    <button class="btn btn-secondary btn-sm m-1" type="submit" name="sort_order" value="likes">Most Likes</button>
+                    {% for letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' %}
+                        <button class="btn btn-secondary btn-sm m-1" type="submit" name="letter" value="{{ letter }}">{{ letter }}</button>
+                    {% endfor %}
+                </form>
+            </div>
+        </div>
+    </div>
+
     {% if user.is_authenticated %}
         <div class="row gx-4 gx-lg-5">
-            {% for entry in user.cookbookentry_set.all %}
+            {% for recipe in cookbook_recipes %}
                 <div class="col-md-4 mb-5">
                     <div class="card h-100">
-                        {% if "placeholder" in entry.recipe.photo.url %}
-                            <img class="card-img-top" src="{% static 'images/default.jpg' %}" alt="placeholder image">
+                        {% if recipe.photo_url %}
+                            <img class="card-img-top" src="{{ recipe.photo_url }}" alt="{{ recipe.title }}">
                         {% else %}
-                            <img class="card-img-top" src="{{ entry.recipe.photo.url }}" alt="{{ entry.recipe.title }}">
+                            <img class="card-img-top" src="{% static 'images/default.jpg' %}" alt="placeholder image">
                         {% endif %}
                         <div class="card-body">
-                            <h2 class="card-title">{{ entry.recipe.title }}</h2>
-                            <p class="card-text">{{ entry.recipe.description | safe }}</p>
+                            <h2 class="card-title">{{ recipe.title }}</h2>
+                            <p class="card-text">{{ recipe.description | safe }}</p>
                         </div>
                         <div class="card-footer">
-                            <a href="{% url 'recipe_detail' recipe_id=entry.recipe.id %}" class="btn btn-primary btn-sm">View Recipe</a>
+                            <a href="{% url 'recipe_detail' recipe.id %}" class="btn btn-primary btn-sm">View Recipe</a>
                         </div>
                     </div>
                 </div>
