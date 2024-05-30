@@ -7,4 +7,7 @@ function toggleSection(sectionId) {
     }
 }
 
-
+function toggleFilterSection() {
+    var filterContent = document.getElementById("filter-content");
+    filterContent.style.display = (filterContent.style.display === "none") ? "block" : "none";
+}

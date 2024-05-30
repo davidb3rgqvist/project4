@@ -12,7 +12,7 @@ urlpatterns = [
     path('login/', LoginView.as_view(template_name='registration/login.html'), name='login'),
     path('register/', register_view, name='register'),
     path('summernote/', include('django_summernote.urls')),
-    path('logout/', auth_views.LogoutView.as_view(template_name='registration/login.html'), name='logout'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='logout/logout.html'), name='logout'),
     path('recipe/<int:recipe_id>/', recipe_detail, name='recipe_detail'),
     path('recipe/<int:recipe_id>/update/', update_recipe, name='update_recipe'),
     path('recipe/<int:recipe_id>/delete/', delete_recipe, name='delete_recipe'),

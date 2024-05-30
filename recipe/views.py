@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
+from django.db.models import Count
 from django.contrib.auth.decorators import login_required
 from .models import Recipe, Comment, CookbookEntry
 from .forms import RecipeForm, CommentForm
@@ -12,8 +13,20 @@ def recipe_detail(request, recipe_id):
 
 
 def recipe_list(request):
-    recipes = Recipe.objects.all()
-    return render(request, 'recipe/recipe_list.html', {'recipes': recipes})
+    sort_order = request.GET.get('sort_order', 'newest')
+    letter_filter = request.GET.get('letter', '')
+
+    if letter_filter:
+        recipes = Recipe.objects.filter(is_public=True, title__istartswith=letter_filter)
+    else:
+        recipes = Recipe.objects.filter(is_public=True)
+
+    if sort_order == 'likes':
+        recipes = recipes.annotate(num_likes=Count('likes')).order_by('-num_likes')
+    else:
+        recipes = recipes.order_by('-created_at')
+
+    return render(request, 'recipe/recipe_list.html', {'recipes': recipes, 'sort_order': sort_order})
 
 
 @login_required
@@ -25,6 +38,8 @@ def create_recipe(request):
             recipe = recipe_form.save(commit=False)
             recipe.user = request.user
             recipe.save()
+
+            CookbookEntry.objects.create(user=request.user, recipe=recipe)
 
             # for form in ingredient_formset:
             #     ingredient = form.save(commit=False)
@@ -108,29 +123,17 @@ def save_to_cookbook(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
     user = request.user
 
-    # Check if the recipe is already saved to the user's cookbook
-    if CookbookEntry.objects.filter(user=user, recipe=recipe).exists():
-        return JsonResponse({'status': 'error', 'message': 'Recipe already saved to cookbook'})
+    if not CookbookEntry.objects.filter(user=user, recipe=recipe).exists():
+        entry = CookbookEntry(user=user, recipe=recipe)
+        entry.save()
 
-    # Create a new cookbook entry and save it to the database
-    entry = CookbookEntry(user=user, recipe=recipe)
-    entry.save()
-
-    return JsonResponse({'status': 'ok'})
-
+    return redirect('recipe_detail', recipe_id=recipe.id)
 
 @login_required
 def unsave_from_cookbook(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
     user = request.user
 
-    # Check if the recipe is saved to the user's cookbook
-    try:
-        entry = CookbookEntry.objects.get(user=user, recipe=recipe)
-    except CookbookEntry.DoesNotExist:
-        return JsonResponse({'status': 'error', 'message': 'Recipe not found in cookbook'})
+    CookbookEntry.objects.filter(user=user, recipe=recipe).delete()
 
-    # Delete the cookbook entry
-    entry.delete()
-
-    return JsonResponse({'status': 'ok'})
+    return redirect('recipe_detail', recipe_id=recipe.id)

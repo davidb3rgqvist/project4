@@ -550,13 +550,16 @@ progress {
   border: 1px solid #ddd;
   margin-bottom: 20px;
   padding: 10px;
+  border-radius: 5px;
 }
 
 .toggle-header {
-  cursor: pointer;
+  cursor: hand;
   background-color: #f9f9f9;
   padding: 10px;
   border-bottom: 1px solid #ddd;
+  border-radius: 5px;
+
 }
 
 .toggle-content {
@@ -596,6 +599,10 @@ progress {
 
 .summernote-textarea {
   max-width: 55%;
+}
+
+.filter-section form button {
+  display: inline-block;
 }
 
 /* End new styling */

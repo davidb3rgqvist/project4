@@ -55,8 +55,8 @@
                     {{ comment_form.as_p }}
                     <button class="btn btn-secondary m-1" type="submit">Submit</button>
                 </form>
-                {% if user.is_authenticated and not user == recipe.user %}
-                <div class="row justify-align-center">
+                {% if user.is_authenticated and user != recipe.user %}
+                <div class="row justify-content-center">
                     <div class="col-md">
                         <form method="post" action="{% url 'like_recipe' recipe_id=recipe.id %}">
                             {% csrf_token %}
@@ -94,16 +94,14 @@
         {% endif %}
     </div>
 </div>
-</div>
-</div>
-<section class="m-5">
-{% if request.user == recipe.user %}
-<a href="{% url 'update_recipe' recipe_id=recipe.id %}" class="btn btn-primary">Edit Recipe</a>
-<form action="{% url 'delete_recipe' recipe_id=recipe.id %}" method="post" style="display:inline;">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-danger">Delete Recipe</button>
-</form>
-</section>
 
-{% endif %}
+<section class="m-5">
+    {% if request.user == recipe.user %}
+        <a href="{% url 'update_recipe' recipe_id=recipe.id %}" class="btn btn-primary">Edit Recipe</a>
+        <form action="{% url 'delete_recipe' recipe_id=recipe.id %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Delete Recipe</button>
+        </form>
+    {% endif %}
+</section>
 {% endblock %}

@@ -12,7 +12,7 @@ class Recipe(models.Model):
     # Apply resizing transformation to the photo field
     photo = CloudinaryField(
         'image',
-        default='recipes/default.jpg',
+        default='https://res.cloudinary.com/dbar13vfu/image/upload/v1716714496/recipe/default.jpg',
         blank=True,
         transformation={'width': 1000, 'height': 800, 'crop': 'limit'}
     )
@@ -48,7 +48,6 @@ class Photo(models.Model):
 class CookbookEntry(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
-    saved_at = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return f'{self.user.username}\'s Cookbook Entry for {self.recipe.title}'
+    class Meta:
+        unique_together = ('user', 'recipe')

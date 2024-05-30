@@ -6,6 +6,26 @@
 
 {% block content %}
     <h1>Recipes</h1>
+
+    <div class="section">
+        <div class="toggle-header" onclick="toggleFilterSection()">
+            <h3>Filter</h3>
+        </div>
+        <div class="toggle-content" id="filter-content" style="display: none;">
+            <div class="filter-section m-3">
+                <form method="get">
+                    <button class="btn btn-secondary btn-sm m-1" type="submit" name="sort_order" value="newest">Newest First</button>
+                    <button class="btn btn-secondary btn-sm m-1" type="submit" name="sort_order" value="likes">Most Likes</button>
+                    {% for letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' %}
+                        <button class="btn btn-secondary btn-sm m-1" type="submit" name="letter" value="{{ letter }}">{{ letter }}</button>
+                    {% endfor %}
+                </form>
+            </div>
+        </div>
+    </div>
+
+   
+
     <div class="row gx-4 gx-lg-5">
         {% for recipe in recipes %}
             <div class="col-md-4 mb-5">
