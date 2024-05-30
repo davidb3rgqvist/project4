@@ -5,49 +5,92 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-    <h2>Login</h2>
-    <form method="post">
-        {% csrf_token %}
-        <!-- General form errors -->
-        {% if form.non_field_errors %}
-            <div class="alert alert-danger">
-                {% for error in form.non_field_errors %}
-                    <p>{{ error }}</p>
-                {% endfor %}
+<h1 class="mb-3 mt-5">Recipes</h1>
+<section class="m-5">
+    <div class="row">
+        <div class="col-md-6 d-flex align-items-center">
+            <div class="container-food">
+                <img src="{% static 'images/food.jpg' %}" class="rounded img-fluid" alt="Recipe Image">
             </div>
-        {% endif %}
-
-        <!-- Username field and errors -->
-        <div class="form-group">
-            <label for="id_username">Username:</label>
-            {{ form.username }}
-            {% if form.username.errors %}
-                <div class="alert alert-danger">
-                    {% for error in form.username.errors %}
-                        <p>{{ error }}</p>
-                    {% endfor %}
-                </div>
-            {% endif %}
+            <div class="ml-3">
+                <h2>Keep all your recipes in one place</h2>
+                <p>lorem</p>
+            </div>
         </div>
-
-        <!-- Password field and errors -->
-        <div class="form-group">
-            <label for="id_password">Password:</label>
-            {{ form.password }}
-            {% if form.password.errors %}
-                <div class="alert alert-danger">
-                    {% for error in form.password.errors %}
-                        <p>{{ error }}</p>
-                    {% endfor %}
-                </div>
-            {% endif %}
+</section>       
+<section class="m-5">
+        <div class="col-md-6 offset-md-1 d-flex align-items-center">
+            <div class="container-pro">
+                <h2>For professional kitchen</h2>
+                <p>lorem</p>
+            </div>
+            <div class="ml-3">
+                <img src="{% static 'images/professional.jpg' %}" class="rounded img-fluid" alt="Recipe Image">
+            </div>
         </div>
+</section>
+<section class="m-5">
+        <div class="col-md-4 offset-md-2 d-flex align-items-center">
+            <div class="container-market">
+                <img src="{% static 'images/market.jpg' %}" class="rounded img-fluid" alt="Recipe Image">
+            </div>
+            <div class="ml-3">
+                <h2>Get inspired from others</h2>
+                <p>lorem</p>
+            </div>
+        </div>
+    </div>
+</div>
+</section>  
+<section class="m-3">
+<div class="row mt-5">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">Login</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {% for error in form.non_field_errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
 
-        <button type="submit">Log in</button>
-    </form>
+                    <div class="form-group">
+                        <label for="id_username">Username:</label>
+                        {{ form.username }}
+                        {% if form.username.errors %}
+                            <div class="alert alert-danger">
+                                {% for error in form.username.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
 
-    <button>
-        <a href="{% url 'register' %}">Register</a>
-    </button>
+                    <div class="form-group">
+                        <label for="id_password">Password:</label>
+                        {{ form.password }}
+                        {% if form.password.errors %}
+                            <div class="alert alert-danger">
+                                {% for error in form.password.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
 
+                    <button class="btn btn-primary btn-sm mb-3" type="submit">Log in</button>
+                </form>
+
+                <button class="btn btn-secondary btn-sm mb-3">
+                    <a href="{% url 'register' %}">Register</a>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
 {% endblock %}
