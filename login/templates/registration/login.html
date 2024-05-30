@@ -5,92 +5,112 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-<h1 class="mb-3 mt-5">Recipes</h1>
+<h1 class="mb-3 mt-5">Welcome to the cookbook!</h1>
+
 <section class="m-5">
     <div class="row">
-        <div class="col-md-6 d-flex align-items-center">
-            <div class="container-food">
-                <img src="{% static 'images/food.jpg' %}" class="rounded img-fluid" alt="Recipe Image">
-            </div>
-            <div class="ml-3">
-                <h2>Keep all your recipes in one place</h2>
-                <p>lorem</p>
+        <div class="col-lg-4 d-flex justify-content-center align-items-center"> <!-- Adjusted column order -->
+            <div class="rounded-circle img-container" style="width: 400px; height: auto;"> <!-- Adjusted width and height -->
+                <img src="{% static 'images/food.jpg' %}" class="rounded-circle img-fluid" alt="Recipe Image"> <!-- Added img-fluid class -->
             </div>
         </div>
-</section>       
+        <div class="col-lg-8 d-flex align-items-center">
+            <div class="container-pro">
+                <h2>Keep all your recipes in one place</h2>
+                <p>Our Recipe App is your ultimate culinary companion, offering a seamless solution for storing all your favorite recipes in one convenient location. Say goodbye to scattered recipe cards and cumbersome cookbooks – with our app, you can effortlessly organize your recipes and access them anytime, anywhere.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section class="m-5">
-        <div class="col-md-6 offset-md-1 d-flex align-items-center">
+    <div class="row">
+        <div class="col-lg-8 d-flex align-items-center">
             <div class="container-pro">
                 <h2>For professional kitchen</h2>
-                <p>lorem</p>
-            </div>
-            <div class="ml-3">
-                <img src="{% static 'images/professional.jpg' %}" class="rounded img-fluid" alt="Recipe Image">
+                <p>The Recipe App offers a centralized solution for culinary professionals to manage their recipes efficiently. With tailored features like customizable ingredient lists and advanced search options, chefs can access their recipes seamlessly, saving time and enhancing productivity. Whether you're a seasoned chef or an amateur cook, this app empowers culinary creativity and excellence.</p>
             </div>
         </div>
+        <div class="col-lg-4 d-flex justify-content-center align-items-center"> <!-- Added align-items-center -->
+            <div class="rounded-circle img-container" style="width: 400px; height: auto;"> <!-- Adjusted width and height -->
+                <img src="{% static 'images/professional.jpg' %}" class="rounded-circle img-fluid" alt="Recipe Image"> <!-- Added img-fluid class -->
+            </div>
+        </div>
+    </div>
 </section>
+
 <section class="m-5">
-        <div class="col-md-4 offset-md-2 d-flex align-items-center">
-            <div class="container-market">
-                <img src="{% static 'images/market.jpg' %}" class="rounded img-fluid" alt="Recipe Image">
+    <div class="row">
+        <div class="col-lg-4 d-flex justify-content-center align-items-center"> <!-- Adjusted column order -->
+            <div class="rounded-circle img-container" style="width: 400px; height: auto;"> <!-- Adjusted width and height -->
+                <img src="{% static 'images/market.jpg' %}" class="rounded-circle img-fluid" alt="Recipe Image"> <!-- Added img-fluid class -->
             </div>
-            <div class="ml-3">
-                <h2>Get inspired from others</h2>
-                <p>lorem</p>
+        </div>
+        <div class="col-lg-8 d-flex align-items-center">
+            <div class="container-pro">
+                <h2>Get organized</h2>
+                <p>Stay focused and organized during cooking sessions with the Recipe App's toggling feature. By toggling away unnecessary sections, users can maintain a clutter-free workspace and concentrate on the recipe at hand. Whether tackling complex dishes or quick meals, this feature ensures efficient and distraction-free cooking, allowing users to cook with confidence and ease.</p>
             </div>
         </div>
     </div>
-</div>
-</section>  
-<section class="m-3">
-<div class="row mt-5">
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-body">
-                <h2 class="card-title">Login</h2>
-                <form method="post">
-                    {% csrf_token %}
-                    {% if form.non_field_errors %}
-                        <div class="alert alert-danger">
-                            {% for error in form.non_field_errors %}
-                                <p>{{ error }}</p>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-
-                    <div class="form-group">
-                        <label for="id_username">Username:</label>
-                        {{ form.username }}
-                        {% if form.username.errors %}
-                            <div class="alert alert-danger">
-                                {% for error in form.username.errors %}
-                                    <p>{{ error }}</p>
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-                    </div>
-
-                    <div class="form-group">
-                        <label for="id_password">Password:</label>
-                        {{ form.password }}
-                        {% if form.password.errors %}
-                            <div class="alert alert-danger">
-                                {% for error in form.password.errors %}
-                                    <p>{{ error }}</p>
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-                    </div>
-
-                    <button class="btn btn-primary btn-sm mb-3" type="submit">Log in</button>
-                </form>
-
-                <button class="btn btn-secondary btn-sm mb-3">
-                    <a href="{% url 'register' %}">Register</a>
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
 </section>
+
+<section>
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card bg-dark text-white" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+  
+              <div class="mb-md-5 mt-md-4 pb-5">
+                <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                <p class="text-white-50 mb-5">Please enter your login and password!</p>
+  
+                <form method="post">
+                  {% csrf_token %}
+                  {% if form.non_field_errors %}
+                  <div class="alert alert-danger">
+                    {% for error in form.non_field_errors %}
+                    <p>{{ error }}</p>
+                    {% endfor %}
+                  </div>
+                  {% endif %}
+  
+                  <div data-mdb-input-init class="form-outline form-white mb-4">
+                    {{ form.username }}
+                    {% if form.username.errors %}
+                    <div class="alert alert-danger">
+                      {% for error in form.username.errors %}
+                      <p>{{ error }}</p>
+                      {% endfor %}
+                    </div>
+                    {% endif %}
+                  </div>
+  
+                  <div data-mdb-input-init class="form-outline form-white mb-4">
+                    {{ form.password }}
+                    {% if form.password.errors %}
+                    <div class="alert alert-danger">
+                      {% for error in form.password.errors %}
+                      <p>{{ error }}</p>
+                      {% endfor %}
+                    </div>
+                    {% endif %}
+                  </div>
+  
+                  <p class="small mb-5 pb-lg-2"><a class="text-white-50">Forgot password?</p>
+  
+                  <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+                  </form>
+              </div>
+  
+              <div>
+                <p class="mb-0">Don't have an account? <a href="{% url 'register' %}" class="text-white-50 fw-bold">Register</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 {% endblock %}

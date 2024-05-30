@@ -591,10 +591,15 @@ progress {
     font-size: 800%;
 }
 
+/* .rounded-img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+} */
+
 .rounded-circle {
   border-radius: 50%;
-  width: 100px; /* Adjust the width and height as needed */
-  height: 100px; /* Adjust the width and height as needed */
+  overflow: hidden;
 }
 
 /* CSS to position the text next to the image */

@@ -18,7 +18,7 @@
     <!-- Responsive navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container px-5">
-            <a class="navbar-brand" href="{% url 'home' %}">My Website</a>
+            <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" alt="Logo" height="50"></a>
             <div>
                 {% if request.user.is_authenticated %}
                     <p class="m-auto p-30 text-center text-white">Logged in as: {{ request.user }}</p>
