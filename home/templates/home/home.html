@@ -5,6 +5,9 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+
+<div class="homepage">
+
 <section>
     <h1>Welcome to the Recipe App</h1>
     <p>Here you can find and share your favorite recipes.</p>
@@ -56,7 +59,7 @@
     {% endif %}
 </section>
 
-<section>
+<section class="feature-section">
     <h2>Featured Recipes</h2>
     <div class="row gx-4 gx-lg-5">
         {% for recipe in recipes %}
@@ -75,4 +78,7 @@
         {% endfor %}
     </div>
 </section>
+
+</div>
+
 {% endblock %}

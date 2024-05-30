@@ -10,6 +10,10 @@
  * Copyright 2011-2022 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+
+/* Import google font */
+@import url('https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&family=Caveat:wght@400..700&family=Jockey+One&family=Londrina+Shadow&family=Palanquin+Dark:wght@400;500;600;700&display=swap');
+
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -106,6 +110,11 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-image: url('/static/images/background-7.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
 }
 
 main {
@@ -559,6 +568,22 @@ progress {
   padding: 10px;
   border-radius: 5px;
 }
+
+.feature-section {
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #e4e1dc;
+}
+
+.logout-message {
+    font-family: "Caveat", cursive;
+    font-weight: 700;
+    font-size: 800%;
+}
+
+
 
 .toggle-header {
   cursor: hand;
