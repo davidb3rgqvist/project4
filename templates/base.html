@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>{% block title %}My Website{% endblock %}</title>
+    <title>Foorky | {% block title %}{% endblock %}</title>
     {% load static %}
     <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon_16px.png' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon_32px.png' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon_64px.png' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon_128px.png' %}">
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{% static 'css/styles.css' %}" rel="stylesheet">
     <!-- Include Summernote CSS -->

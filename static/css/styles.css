@@ -83,7 +83,6 @@
   --bs-highlight-bg: #fff3cd;
 }
 
-
 *,
 *::before,
 *::after {
@@ -301,6 +300,7 @@ pre {
   overflow: auto;
   font-size: 0.875em;
 }
+
 pre code {
   font-size: inherit;
   color: inherit;
@@ -312,6 +312,7 @@ code {
   color: var(--bs-code-color);
   word-wrap: break-word;
 }
+
 a > code {
   color: inherit;
 }
@@ -323,6 +324,7 @@ kbd {
   background-color: var(--bs-body-color);
   border-radius: 0.25rem;
 }
+
 kbd kbd {
   padding: 0;
   font-size: 1em;
