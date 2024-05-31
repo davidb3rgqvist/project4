@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-# from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.db.models import Count
 from django.contrib.auth.decorators import login_required
 from .models import Recipe, Comment, CookbookEntry
@@ -99,10 +99,10 @@ def like_recipe(request, recipe_id):
         if request.user in recipe.likes.all():
             recipe.likes.remove(request.user)
         else:
-            recipe.likes.add(request.user)
+            if recipe.user != request.user:
+                recipe.likes.add(request.user)
+                liked = True
 
-    likes_count = recipe.likes.count()
-    
     return redirect('recipe_detail', recipe_id=recipe_id)
     
 

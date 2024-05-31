@@ -9,7 +9,6 @@ class Recipe(models.Model):
     description = models.TextField()
     ingredients = models.TextField()
     steps = models.TextField()
-    # Apply resizing transformation to the photo field
     photo = CloudinaryField(
         'image',
         default='https://res.cloudinary.com/dbar13vfu/image/upload/v1716714496/recipe/default.jpg',
@@ -20,7 +19,7 @@ class Recipe(models.Model):
     is_public = models.BooleanField(default=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     created_at = models.DateTimeField(default=timezone.now)
-    likes = models.ManyToManyField(User, related_name='liked_recipes', blank=True)
+    likes = models.ManyToManyField(User, related_name='liked_recipes', blank=True, through='Like')
 
     def __str__(self):
         return self.title
@@ -51,3 +50,12 @@ class CookbookEntry(models.Model):
 
     class Meta:
         unique_together = ('user', 'recipe')
+
+
+class Like(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ['user', 'recipe']

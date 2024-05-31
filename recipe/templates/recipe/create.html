@@ -10,7 +10,7 @@
 <form id="recipeForm" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ recipe_form.non_field_errors }}
-    
+
     <div class="mb-3">
         {{ recipe_form.title.label_tag }}
         {{ recipe_form.title }}
@@ -40,4 +40,26 @@
     </div>
 </form>
 
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Include Bootstrap JS (optional) -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+<!-- Include Summernote CSS and JS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('.simple-summernote').summernote({
+            toolbar: [
+                ['style', ['bold', 'italic', 'underline']],
+                ['para', ['ul', 'ol']]
+            ],
+            height: 300, // Set the height of the editor (optional)
+            width: '80%' // Adjust the percentage or pixel value as needed
+        });
+    });
+</script>
 {% endblock %}
