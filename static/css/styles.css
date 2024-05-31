@@ -615,9 +615,14 @@ progress {
 }
 
 .toggle-header {
-  cursor: hand;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   background-color: #f9f9f9;
-  padding: 10px;
+  padding: 5px;
+  padding-left: 20px;
+  padding-right: 30px;
   border-bottom: 1px solid #ddd;
   border-radius: 5px;
 
@@ -644,6 +649,16 @@ progress {
   border-radius: 5px;
   width: 100%;
 }
+
+.logged-user {
+  background: #f2f2f2;
+  width: 100%;
+}
+
+.logged-user p {
+  margin-top: 10px;
+}
+
 
 .image-description-container {
   display: flex;

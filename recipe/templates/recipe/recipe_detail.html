@@ -7,6 +7,7 @@
 <div class="section" id="image-description-section">
     <div class="toggle-header" onclick="toggleSection('image-description')">
         <h1>{{ recipe.title }}</h1>
+        <i class="fa-solid fa-sort"></i>
     </div>
     <div class="toggle-content" id="image-description">
         <div class="image-description-container">
@@ -28,6 +29,7 @@
 <div class="section" id="ingredients-section">
     <div class="toggle-header" onclick="toggleSection('ingredients')">
         <h3>Ingredients</h3>
+        <i class="fa-solid fa-sort"></i>
     </div>
     <div class="toggle-content" id="ingredients">
         <p class="m-3">{{ recipe.ingredients | safe }}</p>
@@ -37,6 +39,7 @@
 <div class="section" id="steps-section">
     <div class="toggle-header" onclick="toggleSection('steps')">
         <h3>Steps</h3>
+        <i class="fa-solid fa-sort"></i>
     </div>
     <div class="toggle-content" id="steps">
         <p class="m-3">{{ recipe.steps | safe }}</p>
@@ -46,6 +49,7 @@
 <div class="section" id="like-comment-section">
     <div class="toggle-header" onclick="toggleSection('like-comment')">
         <h5>Likes & Comments</h5>
+        <i class="fa-solid fa-sort"></i>
     </div>
     <div class="toggle-content" id="like-comment">
         <div class="row justify-content-center">
