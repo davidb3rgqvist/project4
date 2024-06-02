@@ -4,10 +4,10 @@
 {% block title %}Update Recipe{% endblock %}
 
 {% block content %}
-    <h1 class="mb-3 mt-5">Update Recipe</h1>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Update Recipe</button>
-    </form>
+<h1 class="mb-3 mt-5">Update Recipe</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Update Recipe</button>
+</form>
 {% endblock %}

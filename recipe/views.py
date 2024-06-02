@@ -3,6 +3,7 @@ from django.template.defaultfilters import truncatechars
 from django.http import JsonResponse, HttpResponse
 from django.db.models import Count
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from .models import Recipe, Comment, CookbookEntry
 from .forms import RecipeForm, CommentForm
 
@@ -42,8 +43,11 @@ def create_recipe(request):
             recipe.save()
 
             CookbookEntry.objects.create(user=request.user, recipe=recipe)
+            messages.success(request, 'Recipe created successfully!')
 
             return redirect('recipe_list')
+        else:
+            messages.error(request, 'There was an error creating the recipe.')
     else:
         recipe_form = RecipeForm()
 
@@ -64,10 +68,13 @@ def update_recipe(request, recipe_id):
         form = RecipeForm(request.POST, request.FILES, instance=recipe)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Recipe updated successfully.')
             return redirect('recipe_detail', recipe_id=recipe.id)
+        else:
+            messages.error(request, 'There was an error updating the recipe. Please check the form.')
     else:
         form = RecipeForm(instance=recipe)
-    
+
     # Truncate image URL
     if form.instance.photo:
         form.instance.photo.url_truncated = truncatechars(form.instance.photo.url, 5)
@@ -102,7 +109,10 @@ def like_recipe(request, recipe_id):
                 recipe.likes.add(request.user)
                 liked = True
 
-    return redirect('recipe_detail', recipe_id=recipe_id)
+    likes_count = recipe.likes.count()  # Get the updated like count
+
+    # Return the updated like count in JSON response
+    return JsonResponse({'likes_count': likes_count, 'liked': liked})
     
 
 @login_required

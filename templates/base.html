@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,6 +18,7 @@
     <!-- Include Summernote CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.css" rel="stylesheet">
 </head>
+
 <body>
     <!-- Responsive navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -25,30 +27,32 @@
                 <img src="{% static 'images/logo.png' %}" alt="Logo" class="d-none d-md-block" height="40">
                 <img src="{% static 'images/logo.png' %}" alt="Logo" class="d-block d-md-none" height="30">
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     {% if user.is_authenticated %}
-                        {% if request.path != '/login/' %}
-                            <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{% url 'recipe_list' %}">Recipe List</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{% url 'create' %}">Create Recipe</a></li>
-                        {% endif %}
-                        <li class="nav-item">
-                            <form method="POST" action="{% url 'logout' %}">
-                                {% csrf_token %}
-                                <a class="nav-link" onclick="this.closest('form').submit()">Logout</a>
-                            </form>
-                        </li>
+                    {% if request.path != '/login/' %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'recipe_list' %}">Recipe List</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'create' %}">Create Recipe</a></li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <form method="POST" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <a class="nav-link" onclick="this.closest('form').submit()">Logout</a>
+                        </form>
+                    </li>
                     {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#"data-bs-toggle="modal" data-bs-target="#registerModal">Register</a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#registerModal">Register</a>
+                    </li>
                     {% endif %}
                 </ul>
             </div>
@@ -56,17 +60,17 @@
     </nav>
     <div class="logged-user">
         {% if request.user.is_authenticated %}
-            <p class="container px-5">Logged in as: {{ request.user }}</p>
+        <p class="container px-5">Logged in as: {{ request.user }}</p>
         {% endif %}
     </div>
-    
+
     <div class="container px-4 px-lg-5">
         {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-{{ message.tags }}">
-                    {{ message }}
-                </div>
-            {% endfor %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+        {% endfor %}
         {% endif %}
         {% block content %}
         <!-- Content will be injected here -->
@@ -80,70 +84,6 @@
         </div>
     </footer>
 
-    <!-- Login Modal -->
-    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content bg-dark text-white" style="border-radius: 1rem;">
-                <div class="modal-header border-0">
-                    <h5 class="modal-title" id="loginModalLabel">Login</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="container py-5">
-                        <div class="row d-flex justify-content-center align-items-center">
-                            <div class="col-12">
-                                <div class="card-body p-5 text-center d-flex flex-column justify-content-between">
-                                    <div class="mb-md-5 mt-md-4 pb-5">
-                                        <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
-                                        <p class="text-white-50 mb-5">Please enter your login and password!</p>
-                                        <form method="post">
-                                            {% csrf_token %}
-                                            {% if form.non_field_errors %}
-                                            <div class="alert alert-danger">
-                                                {% for error in form.non_field_errors %}
-                                                <p>{{ error }}</p>
-                                                {% endfor %}
-                                            </div>
-                                            {% endif %}
-                                            <div data-mdb-input-init class="form-outline form-white mb-4">
-                                                {{ form.username }}
-                                                {% if form.username.errors %}
-                                                <div class="alert alert-danger">
-                                                    {% for error in form.username.errors %}
-                                                    <p>{{ error }}</p>
-                                                    {% endfor %}
-                                                </div>
-                                                {% endif %}
-                                            </div>
-                                            <div data-mdb-input-init class="form-outline form-white mb-4">
-                                                {{ form.password }}
-                                                {% if form.password.errors %}
-                                                <div class="alert alert-danger">
-                                                    {% for error in form.password.errors %}
-                                                    <p>{{ error }}</p>
-                                                    {% endfor %}
-                                                </div>
-                                                {% endif %}
-                                            </div>
-                                            <p class="small mb-5 pb-lg-2"><a class="text-white-50">Forgot password?</a></p>
-                                            <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
-                                        </form>
-                                    </div>
-                                    <div>
-                                        <p class="mb-0">Don't have an account? <a href="{% url 'register' %}" class="text-white-50 fw-bold">Register</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer border-0">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
@@ -155,4 +95,5 @@
     <!-- Font awesome -->
     <script src="https://kit.fontawesome.com/3ed2cfcb7f.js" crossorigin="anonymous"></script>
 </body>
+
 </html>

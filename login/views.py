@@ -14,6 +14,7 @@ def register_view(request):
         form = UserCreationForm()
     return render(request, 'login/register.html', {'form': form})
 
+
 def login_view(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
@@ -23,7 +24,10 @@ def login_view(request):
             return redirect('home_view')
     else:
         form = AuthenticationForm()
-    return render(request, 'registration/login.html', {'form': form})
+    
+    reload_modal = bool(form.errors)
+    return render(request, 'registration/login.html', {'form': form, 'reload_modal': reload_modal})
+
 
 def logout_view(request):
     if request.method == 'POST':

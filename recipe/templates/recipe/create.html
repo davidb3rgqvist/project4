@@ -7,6 +7,17 @@
 {% block content %}
 <h1 class="mb-3 mt-5">Create Recipe</h1>
 
+<!-- Success and Error Messages -->
+{% if messages %}
+<div>
+    {% for message in messages %}
+    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
 <form id="recipeForm" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ recipe_form.non_field_errors }}
@@ -37,7 +48,7 @@
     </div>
     <div>
         <button class="btn btn-primary btn-sm mb-5" type="submit">Save Recipe</button>
-    </div>    
+    </div>
 </form>
 
 <!-- Include jQuery -->
@@ -51,7 +62,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js"></script>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $('.simple-summernote').summernote({
             toolbar: [
                 ['style', ['bold', 'italic', 'underline']],

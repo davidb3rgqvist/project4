@@ -17,7 +17,10 @@
         <div class="col-lg-8 d-flex align-items-center">
             <div class="container-pro">
                 <h2>Keep all your recipes in one place</h2>
-                <p>Our Recipe App is your ultimate culinary companion, offering a seamless solution for storing all your favorite recipes in one convenient location. Say goodbye to scattered recipe cards and cumbersome cookbooks – with our app, you can effortlessly organize your recipes and access them anytime, anywhere.</p>
+                <p>Foorky is your ultimate culinary companion, offering a seamless solution for storing all your
+                    favorite recipes in one convenient location. Say goodbye to scattered recipe cards and cumbersome
+                    cookbooks – with our app, you can effortlessly organize your recipes and access them anytime,
+                    anywhere.</p>
             </div>
         </div>
     </div>
@@ -28,7 +31,11 @@
         <div class="col-lg-8 d-flex align-items-center">
             <div class="container-pro">
                 <h2>For professional kitchen</h2>
-                <p>The Recipe App offers a centralized solution for culinary professionals to manage their recipes efficiently. With tailored features like customizable ingredient lists and advanced search options, chefs can access their recipes seamlessly, saving time and enhancing productivity. Whether you're a seasoned chef or an amateur cook, this app empowers culinary creativity and excellence.</p>
+                <p>Foorky provides a centralized platform for culinary professionals to efficiently manage their
+                    recipes. Chefs can seamlessly access their recipes, saving time and boosting productivity. Whether
+                    you're a seasoned chef or an amateur cook, this app fosters culinary creativity and excellence.
+                    Foorky is an excellent webpage for storing restaurant recipes, allowing multiple chefs easy access
+                    to them.</p>
             </div>
         </div>
         <div class="col-lg-4 d-flex justify-content-center align-items-center">
@@ -49,7 +56,10 @@
         <div class="col-lg-8 d-flex align-items-center">
             <div class="container-pro">
                 <h2>Get organized</h2>
-                <p>Stay focused and organized during cooking sessions with the Recipe App's toggling feature. By toggling away unnecessary sections, users can maintain a clutter-free workspace and concentrate on the recipe at hand. Whether tackling complex dishes or quick meals, this feature ensures efficient and distraction-free cooking, allowing users to cook with confidence and ease.</p>
+                <p>Stay focused and organized during cooking sessions with the Foorky's toggling feature. By toggling
+                    away unnecessary sections, users can maintain a clutter-free workspace and concentrate on the recipe
+                    at hand. Whether tackling complex dishes or quick meals, this feature ensures efficient and
+                    distraction-free cooking, allowing users to cook with confidence and ease.</p>
             </div>
         </div>
     </div>
@@ -60,7 +70,8 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content bg-dark text-white" style="border-radius: 1rem;">
             <div class="modal-header border-0">
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="container py-5">
@@ -79,9 +90,10 @@
                                             {% endfor %}
                                         </div>
                                         {% endif %}
-                                        
+
                                         <div data-mdb-input-init class="form-outline form-white mb-3">
-                                            <label for="{{ form.username.id_for_label }}" class="form-label">Username: </label>
+                                            <label for="{{ form.username.id_for_label }}" class="form-label">Username:
+                                            </label>
                                             {{ form.username }}
                                             {% if form.username.errors %}
                                             <div class="alert alert-danger">
@@ -91,9 +103,10 @@
                                             </div>
                                             {% endif %}
                                         </div>
-                                    
+
                                         <div data-mdb-input-init class="form-outline form-white mb-3">
-                                            <label for="{{ form.password.id_for_label }}" class="form-label">Password: </label>
+                                            <label for="{{ form.password.id_for_label }}" class="form-label">Password:
+                                            </label>
                                             {{ form.password }}
                                             {% if form.password.errors %}
                                             <div class="alert alert-danger">
@@ -103,13 +116,16 @@
                                             </div>
                                             {% endif %}
                                         </div>
-                                        
+
                                         <p class="small mb-5 pb-lg-2"><a class="text-white-50">Forgot password?</a></p>
-                                        <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+                                        <button data-mdb-button-init data-mdb-ripple-init
+                                            class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
                                     </form>
                                 </div>
                                 <div>
-                                    <p class="mb-0">Don't have an account? <a href="{% url 'register' %}" class="text-white-50 fw-bold">Register</a></p>
+                                    <p class="mb-0">Don't have an account? <a href="#" data-bs-toggle="modal"
+                                            data-bs-target="#registerModal" data-bs-dismiss="modal"
+                                            class="text-white-50 fw-bold">Register</a></p>
                                 </div>
                             </div>
                         </div>
@@ -128,7 +144,8 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content bg-dark text-white" style="border-radius: 1rem;">
             <div class="modal-header border-0">
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="container py-5">
@@ -141,20 +158,24 @@
                                     <form method="post">
                                         {% csrf_token %}
                                         {{ form.as_p }}
-                                        <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5 m-3" type="submit">Register</button>
+                                        <button data-mdb-button-init data-mdb-ripple-init
+                                            class="btn btn-outline-light btn-lg px-5 m-3"
+                                            type="submit">Register</button>
                                     </form>
                                 </div>
                                 <div>
-                                  <p>
-                                    Your password can’t be too similar to your other personal information.
-                                    Your password must contain at least 8 characters.
-                                    Your password can’t be a commonly used password.
-                                    Your password can’t be entirely numeric.
-                                    Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
-                                  </p>
+                                    <p>
+                                        Your password can’t be too similar to your other personal information.
+                                        Your password must contain at least 8 characters.
+                                        Your password can’t be a commonly used password.
+                                        Your password can’t be entirely numeric.
+                                        Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
+                                    </p>
                                 </div>
                                 <div class="mt-4">
-                                    <p class="mb-0">Already have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal" class="text-white-50 fw-bold">Login</a></p>
+                                    <p class="mb-0">Already have an account? <a href="#" data-bs-toggle="modal"
+                                            data-bs-target="#loginModal" data-bs-dismiss="modal"
+                                            class="text-white-50 fw-bold">Login</a></p>
                                 </div>
                             </div>
                         </div>
