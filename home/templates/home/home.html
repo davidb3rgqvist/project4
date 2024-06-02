@@ -8,70 +8,64 @@
 
 <div class="homepage">
 
-    <section>
-        <h1 class="mb-3 mt-5">Welcome to Foorky!</h1>
-        <p>Here, you can discover and share your favorite recipes with a vibrant community of food enthusiasts. Whether
-            you're looking for new culinary inspirations or want to showcase your own delicious creations, this is the
-            perfect place to explore and connect. Dive into a world of flavors and enjoy the joy of cooking with others!
-        </p>
-    </section>
+<section>
+    <h1 class="mb-3 mt-5">Welcome to Foorky!</h1>
+    <p>Here, you can discover and share your favorite recipes with a vibrant community of food enthusiasts. Whether you're looking for new culinary inspirations or want to showcase your own delicious creations, this is the perfect place to explore and connect. Dive into a world of flavors and enjoy the joy of cooking with others!</p>
+</section>
 
-    <section class="cookbook">
-        <h2 class="mb-3 mt-5">My Cookbook</h2>
+<section class="cookbook">
+    <h2 class="mb-3 mt-5">My Cookbook</h2>
 
-        <div class="section">
-            <div class="toggle-header" onclick="toggleFilterSection()">
-                <h3>Filter</h3>
-                <i class="fa-solid fa-sort"></i>
-            </div>
-            <div class="toggle-content" id="filter-content" style="display: none;">
-                <div class="filter-section m-3 row">
-                    <form method="get">
-                        <button class="btn btn-secondary btn-sm m-1" type="submit" name="sort_order"
-                            value="newest">Newest First</button>
-                        <button class="btn btn-secondary btn-sm m-1" type="submit" name="sort_order" value="likes">Most
-                            Likes</button>
-                        {% for letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' %}
-                        <button class="btn btn-secondary btn-sm m-1" type="submit" name="letter"
-                            value="{{ letter }}">{{ letter }}</button>
-                        {% endfor %}
-                    </form>
-                </div>
+    <div class="section">
+        <div class="toggle-header" onclick="toggleFilterSection()">
+            <h3>Filter</h3>
+            <i class="fa-solid fa-sort"></i>
+        </div>
+        <div class="toggle-content" id="filter-content" style="display: none;">
+            <div class="filter-section m-3 row">
+                <form method="get">
+                    <button class="btn btn-secondary btn-sm m-1" type="submit" name="sort_order" value="newest">Newest First</button>
+                    <button class="btn btn-secondary btn-sm m-1" type="submit" name="sort_order" value="likes">Most Likes</button>
+                    {% for letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' %}
+                        <button class="btn btn-secondary btn-sm m-1" type="submit" name="letter" value="{{ letter }}">{{ letter }}</button>
+                    {% endfor %}
+                </form>
             </div>
         </div>
+    </div>
 
-        {% if user.is_authenticated %}
+    {% if user.is_authenticated %}
         <div class="row gx-4 gx-lg-5">
             {% for recipe in cookbook_recipes %}
-            <div class="col-md-4 mb-5">
-                <div class="card h-100">
-                    <a href="{% url 'recipe_detail' recipe.id %}">
-                        {% if recipe.photo_url %}
-                        <img class="card-img-top" src="{{ recipe.photo_url }}" alt="{{ recipe.title }}">
-                        {% else %}
-                        <img class="card-img-top" src="{% static 'images/default.jpg' %}" alt="placeholder image">
-                        {% endif %}
-                    </a>
-                    <div class="card-body">
-                        <h2 class="card-title">{{ recipe.title }}</h2>
-                        <p class="card-text">{{ recipe.description | safe }}</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="{% url 'recipe_detail' recipe.id %}" class="btn btn-primary btn-sm">View Recipe</a>
+                <div class="col-md-4 mb-5">
+                    <div class="card h-100">
+                        <a href="{% url 'recipe_detail' recipe.id %}">
+                            {% if recipe.photo_url %}
+                                <img class="card-img-top" src="{{ recipe.photo_url }}" alt="{{ recipe.title }}">
+                            {% else %}
+                                <img class="card-img-top" src="{% static 'images/default.jpg' %}" alt="placeholder image">
+                            {% endif %}
+                        </a>
+                        <div class="card-body">
+                            <h2 class="card-title">{{ recipe.title }}</h2>
+                            <p class="card-text">{{ recipe.description | safe }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{% url 'recipe_detail' recipe.id %}" class="btn btn-primary btn-sm">View Recipe</a>
+                        </div>
                     </div>
                 </div>
-            </div>
             {% endfor %}
         </div>
-        {% else %}
+    {% else %}
         <p>Please <a href="{% url 'login' %}">login</a> to see your cookbook.</p>
-        {% endif %}
-    </section>
+    {% endif %}
+</section>
 
-    <section class="feature-section">
-        <h2>Featured Recipes</h2>
-        <div class="row gx-4 gx-lg-5">
-            {% for recipe in recipes %}
+<section class="feature-section">
+    <h2>Featured Recipes</h2>
+    <div class="row gx-4 gx-lg-5">
+        {% for recipe in recipes %}
             <div class="col-md-4 mb-5">
                 <div class="card h-100">
                     <img class="card-img-top" src="{{ recipe.photo.url }}" alt="{{ recipe.title }}">
@@ -84,9 +78,9 @@
                     </div>
                 </div>
             </div>
-            {% endfor %}
-        </div>
-    </section>
+        {% endfor %}
+    </div>
+</section>
 
 </div>
 

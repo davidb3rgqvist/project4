@@ -5,6 +5,9 @@ from django.contrib import messages
 from recipe.models import Recipe
 
 def register_view(request):
+    """
+    Let users to register as a user
+    """
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
@@ -16,6 +19,9 @@ def register_view(request):
 
 
 def login_view(request):
+    """
+    Let users access the page and create a cookbook
+    """
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
         if form.is_valid():
@@ -30,6 +36,9 @@ def login_view(request):
 
 
 def logout_view(request):
+    """
+    Let users logout from their cookbook.
+    """
     if request.method == 'POST':
         logout(request)
         return redirect('login')

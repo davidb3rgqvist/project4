@@ -1,6 +1,7 @@
 from django.urls import reverse
 from django.shortcuts import redirect
 
+# List of paths that do not require authentication
 EXCLUDED_PATHS = [
     reverse('admin:index'),
     reverse('admin:login'),
@@ -9,6 +10,9 @@ EXCLUDED_PATHS = [
 ]
 
 class LoginRequiredMiddleware:
+    """
+    Middleware to redirect unauthenticated users to the login page.
+    """
     def __init__(self, get_response):
         self.get_response = get_response
 

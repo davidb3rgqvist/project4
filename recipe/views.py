@@ -6,8 +6,12 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Recipe, Comment, CookbookEntry
 from .forms import RecipeForm, CommentForm
+from django.urls import reverse
 
 def recipe_detail(request, recipe_id):
+    """
+    Display details of a recipe including comments and comment form.
+    """
     recipe = get_object_or_404(Recipe, id=recipe_id)
     comments = recipe.comments.all()
     comment_form = CommentForm()
@@ -16,6 +20,9 @@ def recipe_detail(request, recipe_id):
 
 
 def recipe_list(request):
+    """
+    Display a list of recipes with optional sorting and filtering.
+    """
     sort_order = request.GET.get('sort_order', 'newest')
     letter_filter = request.GET.get('letter', '')
 
@@ -34,6 +41,9 @@ def recipe_list(request):
 
 @login_required
 def create_recipe(request):
+    """
+    Create a new recipe.
+    """
     if request.method == 'POST':
         recipe_form = RecipeForm(request.POST, request.FILES)
 
@@ -58,6 +68,9 @@ def create_recipe(request):
 
 @login_required
 def update_recipe(request, recipe_id):
+    """
+    Update an existing recipe.
+    """
     recipe = get_object_or_404(Recipe, id=recipe_id)
 
     if recipe.user != request.user:
@@ -75,7 +88,6 @@ def update_recipe(request, recipe_id):
     else:
         form = RecipeForm(instance=recipe)
 
-    # Truncate image URL
     if form.instance.photo:
         form.instance.photo.url_truncated = truncatechars(form.instance.photo.url, 5)
 
@@ -84,6 +96,9 @@ def update_recipe(request, recipe_id):
 
 @login_required
 def delete_recipe(request, recipe_id):
+    """
+    Delete a recipe.
+    """
     recipe = get_object_or_404(Recipe, id=recipe_id)
 
     if recipe.user != request.user:
@@ -98,6 +113,9 @@ def delete_recipe(request, recipe_id):
 
 @login_required
 def like_recipe(request, recipe_id):
+    """
+    Like or unlike a recipe.
+    """
     recipe = get_object_or_404(Recipe, id=recipe_id)
     liked = False
 
@@ -109,14 +127,16 @@ def like_recipe(request, recipe_id):
                 recipe.likes.add(request.user)
                 liked = True
 
-    likes_count = recipe.likes.count()  # Get the updated like count
+    likes_count = recipe.likes.count()
 
-    # Return the updated like count in JSON response
     return JsonResponse({'likes_count': likes_count, 'liked': liked})
     
 
 @login_required
 def add_comment(request, recipe_id):
+    """
+    Add a comment to the recipe
+    """
     recipe = get_object_or_404(Recipe, id=recipe_id)
     if request.method == 'POST':
         comment_form = CommentForm(request.POST)
@@ -125,11 +145,19 @@ def add_comment(request, recipe_id):
             comment.user = request.user
             comment.recipe = recipe
             comment.save()
-    return redirect('recipe_detail', recipe_id=recipe_id)
+            redirect_url = reverse('recipe_detail', args=[recipe_id])
+            print("Redirect URL:", redirect_url)  # Debugging info
+            return redirect(redirect_url)
+    else:
+        comment_form = CommentForm()
+    return render(request, 'recipe/recipe_detail.html', {'comment_form': comment_form})
 
 
 @login_required
 def save_to_cookbook(request, recipe_id):
+    """
+    Save a recipe to the user's cookbook.
+    """
     recipe = get_object_or_404(Recipe, id=recipe_id)
     if request.user != recipe.user:
         CookbookEntry.objects.get_or_create(user=request.user, recipe=recipe)
@@ -137,6 +165,9 @@ def save_to_cookbook(request, recipe_id):
 
 @login_required
 def unsave_from_cookbook(request, recipe_id):
+    """
+    Remove a recipe from the user's cookbook.
+    """
     recipe = get_object_or_404(Recipe, id=recipe_id)
     CookbookEntry.objects.filter(user=request.user, recipe=recipe).delete()
     return redirect('recipe_detail', recipe_id=recipe_id)

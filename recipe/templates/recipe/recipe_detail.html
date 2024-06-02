@@ -5,6 +5,7 @@
 
 {% block content %}
 <section>
+    <!-- Section for displaying recipe title and description -->
     <div class="section mt-4" id="image-description-section">
         <div class="toggle-header" onclick="toggleSection('image-description')">
             <h1>{{ recipe.title }}</h1>
@@ -27,6 +28,7 @@
         </div>
     </div>
 
+    <!-- Section for displaying recipe ingredients -->
     <div class="section" id="ingredients-section">
         <div class="toggle-header" onclick="toggleSection('ingredients')">
             <h3>Ingredients</h3>
@@ -37,6 +39,7 @@
         </div>
     </div>
 
+    <!-- Section for displaying recipe steps -->
     <div class="section" id="steps-section">
         <div class="toggle-header" onclick="toggleSection('steps')">
             <h3>Steps</h3>
@@ -47,6 +50,7 @@
         </div>
     </div>
 
+    <!-- Section for likes and comments -->
     <div class="section" id="like-comment-section">
         <div class="toggle-header" onclick="toggleSection('like-comment')">
             <h5>Likes & Comments</h5>
@@ -55,12 +59,13 @@
         <div class="toggle-content" id="like-comment">
             <div class="row justify-content-center">
                 <div class="col-md">
-                    <!-- Comment form -->
-                    <form method="post" action="{% url 'add_comment' recipe_id=recipe.id %}">
+                   <!-- Comment Form -->
+                   <form method="post" action="{% url 'add_comment' recipe_id=recipe.id %}">
                         {% csrf_token %}
-                        {% for field in comment_form %}
-                        <!-- Form fields -->
-                        {% endfor %}
+                        <div class="form-group">
+                            <textarea class="form-control mt-3" id="comment" name="comment" rows="5"></textarea>
+                        </div>
+                        <input type="hidden" name="recipe_id" value="{{ recipe.id }}">
                         <button class="btn btn-secondary mt-2" type="submit">Submit</button>
                     </form>
 
@@ -94,6 +99,7 @@
         </div>
     </div>
 
+    <!-- Section for cookbook options -->
     <div class="row justify-content-center mt-3">
         <div class="col-md">
             {% if user.is_authenticated %}

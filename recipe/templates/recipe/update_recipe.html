@@ -1,13 +1,15 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'base.html' %}  <!-- Extending the base template -->
 
-{% block title %}Update Recipe{% endblock %}
+{% load static %}  <!-- Loading static files -->
 
-{% block content %}
+{% block title %}Update Recipe{% endblock %}  <!-- Setting the page title -->
+
+{% block content %}  <!-- Beginning of the content block -->
 <h1 class="mb-3 mt-5">Update Recipe</h1>
+<!-- Update Recipe Form -->
 <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Update Recipe</button>
+    {% csrf_token %}  <!-- CSRF token for security -->
+    {{ form.as_p }}  <!-- Displaying form fields as paragraphs -->
+    <button type="submit" class="btn btn-primary">Update Recipe</button>  <!-- Submit button -->
 </form>
 {% endblock %}

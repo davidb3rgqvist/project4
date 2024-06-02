@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 
+# Model representing a Recipe
 class Recipe(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()

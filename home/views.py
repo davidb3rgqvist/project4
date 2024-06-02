@@ -4,6 +4,9 @@ from django.shortcuts import render
 from django.db.models import Count
 
 def home_view(request):
+    """
+    Add the users recipes to the cookbook, created and saved. the three latest recipes is displayed as a feature.
+    """
     recipes = Recipe.objects.filter(is_public=True).order_by('-created_at')[:3]
 
     cookbook_recipes = []
