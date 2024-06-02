@@ -4,6 +4,7 @@
 {% block title %}{{ recipe.title }}{% endblock %}
 
 {% block content %}
+<section>
 <div class="section mt-4" id="image-description-section">
     <div class="toggle-header" onclick="toggleSection('image-description')">
         <h1>{{ recipe.title }}</h1>
@@ -13,13 +14,13 @@
         <div class="image-description-container">
             <div class="image-container-detail">
                 {% if "placeholder" in recipe.photo.url %}
-                    <img class="card-img-top" src="{% static 'images/default.jpg' %}" alt="placeholder image">
+                    <img class="card-img-top rounded" src="{% static 'images/default.jpg' %}" alt="placeholder image">
                 {% else %}
-                    <img class="card-img-top" src="{{ recipe.photo.url }}" alt="{{ recipe.title }}">
+                    <img class="card-img-top rounded" src="{{ recipe.photo.url }}" alt="{{ recipe.title }}">
                 {% endif %}
             </div>
             <div class="description m-3">
-                <h5>Description:</h5>
+                <h3>Description:</h3>
                 <p>{{ recipe.description | safe }}</p>
             </div>
         </div>
@@ -114,7 +115,7 @@
     </div>
 </div>
 
-<section class="m-3 mb-5">
+<div class="m-3 mb-5">
     {% if request.user == recipe.user %}
         <a href="{% url 'update_recipe' recipe_id=recipe.id %}" class="btn btn-primary">Edit Recipe</a>
         <form action="{% url 'delete_recipe' recipe_id=recipe.id %}" method="post" style="display:inline;">
@@ -122,7 +123,7 @@
             <button type="submit" class="btn btn-danger">Delete Recipe</button>
         </form>
     {% endif %}
-</section>
+</div>
 
 <script>
     $(document).ready(function() {
@@ -149,5 +150,6 @@
         });
     });
 </script>
+</section>
 
 {% endblock %}

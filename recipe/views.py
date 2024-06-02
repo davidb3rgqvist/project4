@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.template.defaultfilters import truncatechars
 from django.http import JsonResponse, HttpResponse
 from django.db.models import Count
 from django.contrib.auth.decorators import login_required
@@ -35,26 +36,19 @@ def create_recipe(request):
     if request.method == 'POST':
         recipe_form = RecipeForm(request.POST, request.FILES)
 
-        if recipe_form.is_valid(): # and ingredient_formset.is_valid():
+        if recipe_form.is_valid():
             recipe = recipe_form.save(commit=False)
             recipe.user = request.user
             recipe.save()
 
             CookbookEntry.objects.create(user=request.user, recipe=recipe)
 
-            # for form in ingredient_formset:
-            #     ingredient = form.save(commit=False)
-            #     ingredient.recipe = recipe
-            #     ingredient.save()
-
             return redirect('recipe_list')
     else:
         recipe_form = RecipeForm()
-        # ingredient_formset = IngredientFormSet(prefix='ingredients')
 
     return render(request, 'recipe/create.html', {
         'recipe_form': recipe_form,
-        # 'ingredient_formset': ingredient_formset,
     })
 
 
@@ -73,7 +67,12 @@ def update_recipe(request, recipe_id):
             return redirect('recipe_detail', recipe_id=recipe.id)
     else:
         form = RecipeForm(instance=recipe)
-    return render(request, 'recipe/update_recipe.html', {'form': form, 'recipe': recipe})
+    
+    # Truncate image URL
+    if form.instance.photo:
+        form.instance.photo.url_truncated = truncatechars(form.instance.photo.url, 5)
+
+    return render(request, 'recipe/create.html', {'recipe_form': form})
 
 
 @login_required
