@@ -5,12 +5,65 @@
 {% block title %}Register{% endblock %}
 
 {% block content %}
-<div class="mb-sm-5">
-    <h2 class="mb-3 mt-5">Register</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary mb-sm-5">Register</button>
-    </form>
-</div>
+
+<!-- Register section -->
+<section>
+    <div class="section mt-5 mb-2">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-8">
+                <div>
+                    <div>
+                        <h2 class="mb-3">Register</h2>
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit" class="btn btn-primary mb-5">Register</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Benefit 4/5 -->
+<section class="m-5">
+    <div class="row">
+        <div class="col-lg-8 d-flex align-items-center">
+            <div class="container-pro">
+                <h2>Save and Share Recipes</h2>
+                <p>With Foorky, you can save your favorite recipes and share them with friends and family. Whether it's a 
+                    cherished family recipe or a newfound culinary creation, you can keep track of all your recipes in one 
+                    convenient location. Register today to start saving and sharing your culinary masterpieces!</p>
+                
+            </div>
+        </div>
+        <div class="col-lg-4 d-flex justify-content-center align-items-center">
+            <div class="rounded-circle img-container" style="width: 400px; height: auto;">
+                <img src="{% static 'images/save.jpg' %}" class="rounded-circle img-fluid" alt="Personalized cooking Image">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Benefit 5/5 -->
+<section class="m-5">
+    <div class="row">
+        <div class="col-lg-4 d-flex justify-content-center align-items-center">
+            <div class="rounded-circle img-container" style="width: 400px; height: auto;">
+                <img src="{% static 'images/family.jpg' %}" class="rounded-circle img-fluid" alt="Family cooking Image">
+            </div>
+        </div>
+        <div class="col-lg-8 d-flex align-items-center">
+            <div class="container-pro">
+                <h2>Personalized Cooking Experience</h2>
+                <p>Unlock a personalized cooking experience with Foorky! Registering allows you to customize your profile, 
+                    save dietary preferences, and receive tailored recipe recommendations. Whether you're a vegetarian, vegan, 
+                    or have specific dietary restrictions, Foorky helps you discover recipes that suit your taste and lifestyle. 
+                    Sign up now for a personalized culinary journey!</p>
+            </div>
+        </div>
+    </div>
+</section>
+
 {% endblock %}

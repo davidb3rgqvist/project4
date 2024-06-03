@@ -12,6 +12,7 @@ function toggleFilterSection() {
     filterContent.style.display = (filterContent.style.display === "none") ? "block" : "none";
 }
 
+
 document.addEventListener("DOMContentLoaded", function () {
     const editButtons = document.querySelectorAll('.edit-comment-btn');
     editButtons.forEach(btn => {
@@ -24,4 +25,20 @@ document.addEventListener("DOMContentLoaded", function () {
             editForm.style.display = 'block';
         });
     });
+});
+
+
+// footer.js
+
+$(window).scroll(function() {
+    var footerHeight = $('#footer').outerHeight();
+    var scrollTop = $(window).scrollTop();
+    var windowHeight = $(window).height();
+    var scrollBottom = scrollTop + windowHeight;
+
+    if ((scrollBottom + footerHeight) >= $(document).height()) {
+        $('#footer').removeClass('hidden');
+    } else {
+        $('#footer').addClass('hidden');
+    }
 });
