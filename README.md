@@ -4,10 +4,6 @@ Foorky is the ultimate web app for storing and managing all your recipes in one 
 
 - [Deployed page](https://project4-recipe-app-0bdc7c5f1779.herokuapp.com/)
 
-### Login information: 
-- **Username:** testuser
-- **Password:** Testing1234%
-
 ![Responsive test](static/doc/responsive-test.png)
 
 ## Table of Contents
@@ -44,7 +40,11 @@ Foorky is a recipe management web app designed to streamline the organization an
 - **Collaboration:** Implement features that enable users to share recipes, comment on recipes, and collaborate on cooking projects.
 - **Customization:** Allow users to customize their recipe library with personal notes, ratings, and favorite recipes.
 
-![Screen shots of the pages with comments](docs/comments.png)
+![Screen shots of the pages with comments](static/doc/comment-1.png)
+![Screen shots of the pages with comments](static/doc/comment-2.png)
+![Screen shots of the pages with comments](static/doc/comment-3.png)
+![Screen shots of the pages with comments](static/doc/comment-4.png)
+![Screen shots of the pages with comments](static/doc/comment-5.png)
 
 ### Structure:
 
@@ -56,14 +56,21 @@ Foorky is a recipe management web app designed to streamline the organization an
 
 
 ### Skeleton:
-- **Start Button:** Initiate the game with a "Start Game" button.
-- **User Input Field:** Allow users to type their answers.
-- **Submit Button:** Trigger the evaluation of user input.
-- **Correct/Wrong Display:** Visually indicate correct and incorrect answers.
-- **Play Again Button:** Provide an option to restart the game.
-- **Exit to Scoreboard Button:** Allow users to view their high scores.
+- **Create Recipe Button:** Start the recipe creation process with a "Create Recipe" button.
+- **Recipe Title Field:** Provide a title for your recipe.
+- **Description Field:** Add a description to your recipe.
+- **Ingredients List:** List all necessary ingredients.
+- **Steps:** Outline the procedure to prepare the recipe.
+- **Image Upload Option:** Upload an image to accompany your recipe or use a default one.
+- **Public/Private Toggle:** Specify whether the recipe should be public or private.
+- **Success Message:** Confirmation message upon successful recipe creation.
+- **Prepopulated Fields for Editing:** Fields come prepopulated for easy editing when modifying recipes.
+- **Like Button with Like Count:** Display the like count and enable liking of recipes.
+- **Comment Section:** Engage in discussions and view comments from other users.
+- **Edit Comment Option:** Edit your comments for accuracy.
+- **Delete Comment Button:** Remove comments to maintain relevant discussions.
 
-![Wireframe link](docs/wireframe.png)
+![Wireframe link](static/doc/wireframe.png)
 
 ### Surface:
 - **Sign-Up/Login:** Initiate user interaction with a sign-up/login prompt.
@@ -123,25 +130,27 @@ By embracing these strategic steps, our vision for Foorky is not just a web app 
 
 We plan to enhance the website with the following features:
 
-- Recipe Import: Allow users to import recipes from external sources such as websites or other recipe management platforms, making it easy to transfer existing recipes into Foorky.
+- **Search Field:** Incorporate a search field to enable users to quickly find specific recipes or ingredients within their collection.
 
-- Meal Planning: Integrate a meal planning feature that enables users to schedule meals by selecting recipes from their collection, helping users organize their cooking schedule for the week or month.
+- **Recipe Import:** Allow users to import recipes from external sources such as websites or other recipe management platforms, making it easy to transfer existing recipes into Foorky.
 
-- Ingredient Management: Provide users with tools to manage their ingredient inventory, including features for tracking ingredient quantities, setting reminders for low stock, and generating shopping lists based on selected recipes.
+- **Meal Planning:** Integrate a meal planning feature that enables users to schedule meals by selecting recipes from their collection, helping users organize their cooking schedule for the week or month.
 
-- Nutritional Information: Display nutritional information for recipes, including calorie count, macronutrient breakdown, and allergen information, helping users make informed dietary choices.
+- **Ingredient Management:** Provide users with tools to manage their ingredient inventory, including features for tracking ingredient quantities, setting reminders for low stock, and generating shopping lists based on selected recipes.
 
-- Recipe Recommendations: Offer personalized recipe recommendations based on users' preferences, cooking history, and dietary restrictions, helping users discover new recipes they may enjoy.
+- **Nutritional Information:** Display nutritional information for recipes, including calorie count, macronutrient breakdown, and allergen information, helping users make informed dietary choices.
 
-- Social Integration: Enable users to connect with friends and family within the Foorky platform, allowing them to share recipes, collaborate on cooking projects, and view each other's recipe collections.
+- **Recipe Recommendations:** Offer personalized recipe recommendations based on users' preferences, cooking history, and dietary restrictions, helping users discover new recipes they may enjoy.
 
-- Multi-platform Access: Develop Foorky as a cross-platform application, ensuring users can access their recipe collections seamlessly across desktop, mobile, and tablet devices.
+- **Social Integration:** Enable users to connect with friends and family within the Foorky platform, allowing them to share recipes, collaborate on cooking projects, and view each other's recipe collections.
 
-- Offline Mode: Implement an offline mode that allows users to access their most recently viewed recipes even without an internet connection, ensuring uninterrupted access to recipes while cooking in the kitchen.
+- **Multi-platform Access:** Develop Foorky as a cross-platform application, ensuring users can access their recipe collections seamlessly across desktop, mobile, and tablet devices.
 
-- Recipe Versioning: Provide users with the ability to create multiple versions of a recipe, allowing them to experiment with variations or adaptations without altering the original recipe.
+- **Offline Mode:** Implement an offline mode that allows users to access their most recently viewed recipes even without an internet connection, ensuring uninterrupted access to recipes while cooking in the kitchen.
 
-- Integration with Smart Devices: Enable integration with smart kitchen devices such as smart scales or ovens, allowing users to follow recipes more accurately by syncing cooking instructions directly with their devices.
+- **Recipe Versioning:** Provide users with the ability to create multiple versions of a recipe, allowing them to experiment with variations or adaptations without altering the original recipe.
+
+- **Integration with Smart Devices:** Enable integration with smart kitchen devices such as smart scales or ovens, allowing users to follow recipes more accurately by syncing cooking instructions directly with their devices.
 
 ## Technology Used
 
@@ -158,13 +167,10 @@ We plan to enhance the website with the following features:
 
 ## Testing
 
-Testing was an integral part of the website development process. We performed comprehensive tests across various devices and screen sizes to ensure a seamless user experience. This included functional testing to verify proper functionality of all features, as well as responsive testing to guarantee optimal display on different devices. Additionally we performed serval validation tests.
+Testing was an integral part of the website development process. We performed comprehensive tests across various devices and screen sizes to ensure a seamless user experience. This included functional testing to verify proper functionality of all features, as well as responsive testing to guarantee optimal display on different devices. Additionally we performed serval manual tests.
 
-- [HTML Validation of index.html, no errors found](docs/index-validation.png)
-- [CSS Validation of style.css, no errors found](docs/css-validation.png)
-- [JavaScript Validation, no errors found](docs/javascript-validation.png)
-- [Lighthouse report](docs/lighthouse-report.png)
-- [Responsiveness overview](docs/responsive-test.png)
+- [Responsiveness overview](static/doc/responsive-test.png)
+- [Manual testing table](testing.md)
 
 ## Development
 
@@ -187,6 +193,16 @@ If you're a developer looking to contribute to the Foorky project or get started
 8. **Start Coding:** You're all set to start coding! Make changes to the codebase, add new features, fix bugs, and contribute to the Foorky project. Don't forget to create a new branch for your changes and submit pull requests for review.
 
 For more detailed information on contributing to the Foorky project, including coding conventions, workflow guidelines, and best practices, refer to the project's documentation and README file on GitHub.
+
+## Agile Development
+
+This project follows Agile development methodology to manage tasks and ensure timely delivery of features. Agile emphasizes iterative development, collaboration, and flexibility.
+
+### Agile Board
+
+We use an Agile board to manage our tasks and keep track of our progress. You can access our Agile board [here](https://github.com/users/davidb3rgqvist/projects/4).
+
+On the Agile board, you'll find columns representing different stages of the development process, such as "To Do", "In Progress", "Review", and "Done". Each task or user story is represented as a card that moves through these columns as it progresses from being planned to being completed.
 
 ## Deployment
 
@@ -239,7 +255,7 @@ We express our sincere appreciation to everyone who contributed directly or indi
 
 - **Themes and Modal:** We utilized specific Bootstrap themes and modal components to enhance the visual appeal and functionality of the Foorky web application. These elements contributed to a consistent and intuitive user experience.
 - Bootstrap theme: https://startbootstrap.com/template/small-business
-- Modal for login and register: 
+- Modal for login and register: Modified Login Modal by MDB (https://mdbootstrap.com/docs/standard/extended/login/)
 
 ### Inspiration Projects
 

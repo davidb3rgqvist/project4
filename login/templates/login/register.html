@@ -14,6 +14,22 @@
                 <div>
                     <div>
                         <h2 class="mb-3">Register</h2>
+
+                        <!-- Success Message -->
+                        {% if success_message %}
+                            <div class="alert alert-success">
+                                <strong>Success!</strong> {{ success_message }}
+                            </div>
+                        {% endif %}
+
+                        <!-- Error Message -->
+                        {% if error_message %}
+                            <div class="alert alert-danger">
+                                <strong>Error!</strong> {{ error_message }}
+                            </div>
+                        {% endif %}
+
+                        <!-- Form -->
                         <form method="post">
                             {% csrf_token %}
                             {{ form.as_p }}
