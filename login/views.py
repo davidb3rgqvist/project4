@@ -3,6 +3,9 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 from recipe.models import Recipe
+import logging
+
+logger = logging.getLogger(__name__)
 
 def register_view(request):
     """
