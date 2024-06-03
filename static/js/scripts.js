@@ -11,3 +11,17 @@ function toggleFilterSection() {
     var filterContent = document.getElementById("filter-content");
     filterContent.style.display = (filterContent.style.display === "none") ? "block" : "none";
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    const editButtons = document.querySelectorAll('.edit-comment-btn');
+    editButtons.forEach(btn => {
+        btn.addEventListener('click', function () {
+            const commentId = this.getAttribute('data-comment-id');
+            const commentText = document.querySelector(`#comment-${commentId} .comment-text`);
+            const editForm = document.querySelector(`#edit-comment-form-${commentId}`);
+
+            commentText.style.display = 'none';
+            editForm.style.display = 'block';
+        });
+    });
+});

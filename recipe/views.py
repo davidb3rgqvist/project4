@@ -8,6 +8,7 @@ from .models import Recipe, Comment, CookbookEntry
 from .forms import RecipeForm, CommentForm
 from django.urls import reverse
 
+
 def recipe_detail(request, recipe_id):
     """
     Display details of a recipe including comments and comment form.
@@ -127,7 +128,7 @@ def like_recipe(request, recipe_id):
 @login_required
 def add_comment(request, recipe_id):
     """
-    Add a comment to the recipe
+    Add a comment to a recipe.
     """
     recipe = get_object_or_404(Recipe, id=recipe_id)
     if request.method == 'POST':
@@ -142,6 +143,33 @@ def add_comment(request, recipe_id):
 
 
 @login_required
+def edit_comment(request, comment_id):
+    """
+    Edit a comment on a recipe.
+    """
+    comment = get_object_or_404(Comment, id=comment_id, user=request.user)
+    if request.method == 'POST':
+        form = CommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            form.save()
+            return redirect('recipe_detail', recipe_id=comment.recipe.id)
+    else:
+        form = CommentForm(instance=comment)
+    return render(request, 'recipe_detail.html', {'form': form, 'comment': comment})
+
+
+@login_required
+def delete_comment(request, comment_id):
+    """
+    Delete a comment on a recipe.
+    """
+    comment = get_object_or_404(Comment, id=comment_id, user=request.user)
+    recipe_id = comment.recipe.id
+    comment.delete()
+    return redirect('recipe_detail', recipe_id=recipe_id)
+
+
+@login_required
 def save_to_cookbook(request, recipe_id):
     """
     Save a recipe to the user's cookbook.
@@ -150,6 +178,7 @@ def save_to_cookbook(request, recipe_id):
     if request.user != recipe.user:
         CookbookEntry.objects.get_or_create(user=request.user, recipe=recipe)
     return redirect('recipe_detail', recipe_id=recipe_id)
+
 
 @login_required
 def unsave_from_cookbook(request, recipe_id):
