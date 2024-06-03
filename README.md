@@ -186,3 +186,15 @@ The development and creation of the Foorky web application would not have been p
 - **Brian O'Hare:** As a mentor from Code Institute, Brian provided valuable guidance and inspiration during the development of Foorky.
 
 We express our sincere appreciation to everyone who contributed directly or indirectly to the Foorky project, helping shape and enhance this platform for users seeking a seamless solution for recipe management and culinary exploration.
+
+### Used Themes and Modal
+
+- **Themes and Modal:** We utilized specific Bootstrap themes and modal components to enhance the visual appeal and functionality of the Foorky web application. These elements contributed to a consistent and intuitive user experience.
+- Bootstrap theme: https://startbootstrap.com/template/small-business
+- Modal for login and register: 
+
+### Inspiration Projects
+
+- **Inspiration Projects:** The design and functionality of Foorky were inspired by Code Institute walkthrough project: "I Think Therfore I blog". Main structure and auth.
+
+We express our sincere appreciation to everyone who contributed directly or indirectly to the Foorky project, helping shape and enhance this platform for users seeking a seamless solution for recipe management and culinary exploration.
