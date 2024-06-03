@@ -4,7 +4,11 @@ Foorky is the ultimate web app for storing and managing all your recipes in one 
 
 - [Deployed page](https://project4-recipe-app-0bdc7c5f1779.herokuapp.com/)
 
-![Responsive test](docs/responsive-test.png)
+### Login information: 
+- **Username:** testuser
+- **Password:** Testing1234%
+
+![Responsive test](static/doc/responsive-test.png)
 
 ## Table of Contents
   - [UX - Five Planes](#ux---five-planes)
@@ -69,8 +73,51 @@ Foorky is a recipe management web app designed to streamline the organization an
 - **Recipe Sharing Tools:** Include options for users to share recipes via social media or direct sharing links.
 - **Collaboration Features:** Integrate features for users to comment on recipes, rate recipes, and collaborate with others on cooking projects.
 
-![Visual ID](docs/wordstream-vi.png)
+![Visual ID](static/doc/foorky-visual-identity.png)
 
+## Product development
+
+In crafting Foorky, our development journey revolves around harnessing the power of HTML, CSS, JavaScript, Bootstrap, Django, and PostgreSQL. These technologies serve as the foundation, providing a robust framework for the website's frontend, backend, and database functionalities. Our approach embraces a mobile-first philosophy, ensuring a seamless experience across various devices.
+
+To bring our vision to life, we leverage tools such as Figma for meticulous UI/UX design and Git/GitHub for effective version control and collaboration.
+
+As we chart the course for future development, we've identified key areas that can further enrich the Foorky experience:
+
+- **User-Centric Enhancements:** Place a premium on user feedback to enhance the overall user experience. Consider implementing user registration, profile management, and avenues for user-generated content, fostering a more personalized connection.
+
+- **Feature Expansion:** Enrich the platform by introducing advanced search filters, seamless integration with social media platforms, and engaging features such as community forums or cooking challenges. These additions will contribute to a vibrant and interactive culinary community.
+
+- **Improving Accessibility:** Strive for inclusivity by ensuring adherence to accessibility standards, catering to users with diverse needs and abilities.
+
+- **Continual Testing and Optimization:** Uphold a commitment to excellence through an ongoing testing strategy. Identify and address bugs, enhance performance, and validate design changes to ensure a polished user experience.
+
+- **Community Engagement:** Cultivate a sense of community by encouraging user-driven content creation. Welcome feedback with open arms and respond promptly to user queries or concerns, fostering a responsive and vibrant community.
+
+- **Security Measures:** Fortify the platform with robust security measures. Safeguard user data, mitigate potential vulnerabilities, and proactively prevent security breaches to uphold user trust.
+
+By embracing these strategic steps, our vision for Foorky is not just a web app but a dynamic hub for recipe management and culinary exploration. This roadmap emphasizes user-centric design, feature richness, accessibility, continuous improvement, community engagement, and robust security. As we embark on this journey, we remain committed to delivering a culinary experience that exceeds expectations.
+
+## Product development
+
+In crafting Foorky, our development journey revolves around harnessing the power of HTML, CSS, JavaScript, Bootstrap, Django, and PostgreSQL. These technologies serve as the foundation, providing a robust framework for the website's frontend, backend, and database functionalities. Our approach embraces a mobile-first philosophy, ensuring a seamless experience across various devices.
+
+To bring our vision to life, we leverage tools such as Figma for meticulous UI/UX design and Git/GitHub for effective version control and collaboration.
+
+As we chart the course for future development, we've identified key areas that can further enrich the Foorky experience:
+
+- **User-Centric Enhancements:** Place a premium on user feedback to enhance the overall user experience. Consider implementing user registration, profile management, and avenues for user-generated content, fostering a more personalized connection.
+
+- **Feature Expansion:** Enrich the platform by introducing advanced search filters, seamless integration with social media platforms, and engaging features such as community forums or cooking challenges. These additions will contribute to a vibrant and interactive culinary community.
+
+- **Improving Accessibility:** Strive for inclusivity by ensuring adherence to accessibility standards, catering to users with diverse needs and abilities.
+
+- **Continual Testing and Optimization:** Uphold a commitment to excellence through an ongoing testing strategy. Identify and address bugs, enhance performance, and validate design changes to ensure a polished user experience.
+
+- **Community Engagement:** Cultivate a sense of community by encouraging user-driven content creation. Welcome feedback with open arms and respond promptly to user queries or concerns, fostering a responsive and vibrant community.
+
+- **Security Measures:** Fortify the platform with robust security measures. Safeguard user data, mitigate potential vulnerabilities, and proactively prevent security breaches to uphold user trust.
+
+By embracing these strategic steps, our vision for Foorky is not just a web app but a dynamic hub for recipe management and culinary exploration. This roadmap emphasizes user-centric design, feature richness, accessibility, continuous improvement, community engagement, and robust security. As we embark on this journey, we remain committed to delivering a culinary experience that exceeds expectations.
 ## Future Features
 
 We plan to enhance the website with the following features:
@@ -120,25 +167,7 @@ Testing was an integral part of the website development process. We performed co
 
 ## Development
 
-In crafting Foorky, our development journey revolves around harnessing the power of HTML, CSS, JavaScript, Bootstrap, Django, and PostgreSQL. These technologies serve as the foundation, providing a robust framework for the website's frontend, backend, and database functionalities. Our approach embraces a mobile-first philosophy, ensuring a seamless experience across various devices.
-
-To bring our vision to life, we leverage tools such as Figma for meticulous UI/UX design and Git/GitHub for effective version control and collaboration.
-
-As we chart the course for future development, we've identified key areas that can further enrich the Foorky experience:
-
-- **User-Centric Enhancements:** Place a premium on user feedback to enhance the overall user experience. Consider implementing user registration, profile management, and avenues for user-generated content, fostering a more personalized connection.
-
-- **Feature Expansion:** Enrich the platform by introducing advanced search filters, seamless integration with social media platforms, and engaging features such as community forums or cooking challenges. These additions will contribute to a vibrant and interactive culinary community.
-
-- **Improving Accessibility:** Strive for inclusivity by ensuring adherence to accessibility standards, catering to users with diverse needs and abilities.
-
-- **Continual Testing and Optimization:** Uphold a commitment to excellence through an ongoing testing strategy. Identify and address bugs, enhance performance, and validate design changes to ensure a polished user experience.
-
-- **Community Engagement:** Cultivate a sense of community by encouraging user-driven content creation. Welcome feedback with open arms and respond promptly to user queries or concerns, fostering a responsive and vibrant community.
-
-- **Security Measures:** Fortify the platform with robust security measures. Safeguard user data, mitigate potential vulnerabilities, and proactively prevent security breaches to uphold user trust.
-
-By embracing these strategic steps, our vision for Foorky is not just a web app but a dynamic hub for recipe management and culinary exploration. This roadmap emphasizes user-centric design, feature richness, accessibility, continuous improvement, community engagement, and robust security. As we embark on this journey, we remain committed to delivering a culinary experience that exceeds expectations.
+<!-- for developers... -->
 
 ## Deployment
 

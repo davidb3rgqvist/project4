@@ -1,5 +1,6 @@
-from django import forms  # Importing the forms module
-from recipe.models import Recipe, Comment  # Importing models
+from django import forms
+from recipe.models import Recipe, Comment
+
 
 class SimpleSummernoteWidget(forms.Textarea):
     """
@@ -18,6 +19,7 @@ class SimpleSummernoteWidget(forms.Textarea):
         super().__init__(*args, **kwargs)
         self.attrs['class'] = 'form-control simple-summernote'
 
+
 class RecipeForm(forms.ModelForm):
     """
     Form for creating or updating Recipe instances.
@@ -34,23 +36,20 @@ class RecipeForm(forms.ModelForm):
             'ingredients': SimpleSummernoteWidget(),
         }
 
+    
 class CommentForm(forms.ModelForm):
     """
     Form for creating comments on Recipe instances.
     """
-    def __init__(self, *args, **kwargs):
-        """
-        Initializes the form and sets additional attributes.
-        """
-        super(CommentForm, self).__init__(*args, **kwargs)
-        self.fields['text'].widget.attrs['class'] = 'form-control'
-
     class Meta:
-        """
-        Meta class specifying the model and fields to include in the form.
-        """
         model = Comment
         fields = ['text']
-        labels = {
-            'text': ''  # Hides label for the 'text' field
+        widgets = {
+            'text': forms.Textarea(attrs={
+                'class': 'form-control mt-3',
+                'id': 'comment',
+                'name': 'comment',
+                'rows': 5,
+                'placeholder': 'Add a comment...'
+            }),
         }

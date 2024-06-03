@@ -4,6 +4,7 @@ from cloudinary.models import CloudinaryField
 from django.utils import timezone
 
 
+# Model representing a recipe
 class Recipe(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
@@ -25,6 +26,7 @@ class Recipe(models.Model):
         return self.title
 
 
+# Model representing a comment on a recipe
 class Comment(models.Model):
     recipe = models.ForeignKey(Recipe, related_name='comments', on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -35,15 +37,17 @@ class Comment(models.Model):
         return f'{self.user.username}: {self.text}'
 
 
+# Model representing a photo
 class Photo(models.Model):
     image = CloudinaryField(
         'image',
         transformation={'width': 800, 'height': 600, 'crop': 'limit'}
-    )
+    ) # Photo stored in Cloudinary
     title = models.CharField(max_length=100)
     description = models.TextField()
 
 
+# Model representing a cookbook entry
 class CookbookEntry(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
@@ -52,6 +56,7 @@ class CookbookEntry(models.Model):
         unique_together = ('user', 'recipe')
 
 
+# Model representing a like on a recipe
 class Like(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)

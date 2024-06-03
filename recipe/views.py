@@ -117,19 +117,11 @@ def like_recipe(request, recipe_id):
     Like or unlike a recipe.
     """
     recipe = get_object_or_404(Recipe, id=recipe_id)
-    liked = False
-
-    if request.method == 'POST':
-        if request.user in recipe.likes.all():
-            recipe.likes.remove(request.user)
-        else:
-            if recipe.user != request.user:
-                recipe.likes.add(request.user)
-                liked = True
-
-    likes_count = recipe.likes.count()
-
-    return JsonResponse({'likes_count': likes_count, 'liked': liked})
+    if request.user in recipe.likes.all():
+        recipe.likes.remove(request.user)
+    else:
+        recipe.likes.add(request.user)
+    return redirect('recipe_detail', recipe_id=recipe.id)
     
 
 @login_required
@@ -139,18 +131,14 @@ def add_comment(request, recipe_id):
     """
     recipe = get_object_or_404(Recipe, id=recipe_id)
     if request.method == 'POST':
-        comment_form = CommentForm(request.POST)
-        if comment_form.is_valid():
-            comment = comment_form.save(commit=False)
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
             comment.user = request.user
             comment.recipe = recipe
             comment.save()
-            redirect_url = reverse('recipe_detail', args=[recipe_id])
-            print("Redirect URL:", redirect_url)  # Debugging info
-            return redirect(redirect_url)
-    else:
-        comment_form = CommentForm()
-    return render(request, 'recipe/recipe_detail.html', {'comment_form': comment_form})
+            return redirect('recipe_detail', recipe_id=recipe.id)
+    return redirect('recipe_detail', recipe_id=recipe.id)
 
 
 @login_required
@@ -171,3 +159,6 @@ def unsave_from_cookbook(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
     CookbookEntry.objects.filter(user=request.user, recipe=recipe).delete()
     return redirect('recipe_detail', recipe_id=recipe_id)
+
+
+   

@@ -70,8 +70,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content bg-dark text-white" style="border-radius: 1rem;">
             <div class="modal-header border-0">
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                    aria-label="Close"></button>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="container py-5">
@@ -81,51 +80,46 @@
                                 <div class="mb-md-5 mt-md-4 pb-5">
                                     <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
                                     <p class="text-white-50 mb-5">Please enter your login and password!</p>
-                                    <form method="post">
+                                    <form method="post" action="{% url 'login' %}">
                                         {% csrf_token %}
                                         {% if form.non_field_errors %}
-                                        <div class="alert alert-danger">
-                                            {% for error in form.non_field_errors %}
-                                            <p>{{ error }}</p>
-                                            {% endfor %}
-                                        </div>
+                                            <div class="alert alert-danger">
+                                                {% for error in form.non_field_errors %}
+                                                    <p>{{ error }}</p>
+                                                {% endfor %}
+                                            </div>
                                         {% endif %}
 
                                         <div data-mdb-input-init class="form-outline form-white mb-3">
-                                            <label for="{{ form.username.id_for_label }}" class="form-label">Username:
-                                            </label>
+                                            <label for="{{ form.username.id_for_label }}" class="form-label">Username:</label>
                                             {{ form.username }}
                                             {% if form.username.errors %}
-                                            <div class="alert alert-danger">
-                                                {% for error in form.username.errors %}
-                                                <p>{{ error }}</p>
-                                                {% endfor %}
-                                            </div>
+                                                <div class="alert alert-danger">
+                                                    {% for error in form.username.errors %}
+                                                        <p>{{ error }}</p>
+                                                    {% endfor %}
+                                                </div>
                                             {% endif %}
                                         </div>
 
                                         <div data-mdb-input-init class="form-outline form-white mb-3">
-                                            <label for="{{ form.password.id_for_label }}" class="form-label">Password:
-                                            </label>
+                                            <label for="{{ form.password.id_for_label }}" class="form-label">Password:</label>
                                             {{ form.password }}
                                             {% if form.password.errors %}
-                                            <div class="alert alert-danger">
-                                                {% for error in form.password.errors %}
-                                                <p>{{ error }}</p>
-                                                {% endfor %}
-                                            </div>
+                                                <div class="alert alert-danger">
+                                                    {% for error in form.password.errors %}
+                                                        <p>{{ error }}</p>
+                                                    {% endfor %}
+                                                </div>
                                             {% endif %}
                                         </div>
 
                                         <p class="small mb-5 pb-lg-2"><a class="text-white-50">Forgot password?</a></p>
-                                        <button data-mdb-button-init data-mdb-ripple-init
-                                            class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+                                        <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
                                     </form>
                                 </div>
                                 <div>
-                                    <p class="mb-0">Don't have an account? <a href="#" data-bs-toggle="modal"
-                                            data-bs-target="#registerModal" data-bs-dismiss="modal"
-                                            class="text-white-50 fw-bold">Register</a></p>
+                                    <p class="mb-0">Don't have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal" data-bs-dismiss="modal" class="text-white-50 fw-bold">Register</a></p>
                                 </div>
                             </div>
                         </div>
@@ -144,8 +138,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content bg-dark text-white" style="border-radius: 1rem;">
             <div class="modal-header border-0">
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                    aria-label="Close"></button>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="container py-5">
@@ -155,27 +148,14 @@
                                 <div class="mb-md-5 mt-md-4 pb-5">
                                     <h2 class="fw-bold mb-2 text-uppercase">Register</h2>
                                     <p class="text-white-50 mb-5">Please enter your details to register!</p>
-                                    <form method="post">
+                                    <form method="post" action="{% url 'register' %}">
                                         {% csrf_token %}
                                         {{ form.as_p }}
-                                        <button data-mdb-button-init data-mdb-ripple-init
-                                            class="btn btn-outline-light btn-lg px-5 m-3"
-                                            type="submit">Register</button>
+                                        <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-lg px-5 m-3" type="submit">Register</button>
                                     </form>
                                 </div>
-                                <div>
-                                    <p>
-                                        Your password can’t be too similar to your other personal information.
-                                        Your password must contain at least 8 characters.
-                                        Your password can’t be a commonly used password.
-                                        Your password can’t be entirely numeric.
-                                        Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
-                                    </p>
-                                </div>
                                 <div class="mt-4">
-                                    <p class="mb-0">Already have an account? <a href="#" data-bs-toggle="modal"
-                                            data-bs-target="#loginModal" data-bs-dismiss="modal"
-                                            class="text-white-50 fw-bold">Login</a></p>
+                                    <p class="mb-0">Already have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal" class="text-white-50 fw-bold">Login</a></p>
                                 </div>
                             </div>
                         </div>
