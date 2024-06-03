@@ -17,6 +17,13 @@ class LoginRequiredMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        if not request.user.is_authenticated and request.path not in EXCLUDED_PATHS:
+        # Check if the user is unauthenticated and the requested path is not excluded
+        if not request.user.is_authenticated and not self._is_excluded_path(request.path):
             return redirect('login')
         return self.get_response(request)
+
+    def _is_excluded_path(self, path):
+        """
+        Check if the given path is in the list of excluded paths.
+        """
+        return any(path.startswith(reverse(namespace + ':')) for namespace in EXCLUDED_NAMESPACES)

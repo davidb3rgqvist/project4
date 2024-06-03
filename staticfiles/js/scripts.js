@@ -1,3 +1,4 @@
+// Handling tooglebars in recipes
 function toggleSection(sectionId) {
     var content = document.getElementById(sectionId);
     if (content.style.display === "none") {
@@ -7,12 +8,13 @@ function toggleSection(sectionId) {
     }
 }
 
+// Handling tooglebars in filters
 function toggleFilterSection() {
     var filterContent = document.getElementById("filter-content");
     filterContent.style.display = (filterContent.style.display === "none") ? "block" : "none";
 }
 
-
+// Handling update field for comments
 document.addEventListener("DOMContentLoaded", function () {
     const editButtons = document.querySelectorAll('.edit-comment-btn');
     editButtons.forEach(btn => {
@@ -25,20 +27,4 @@ document.addEventListener("DOMContentLoaded", function () {
             editForm.style.display = 'block';
         });
     });
-});
-
-
-// footer.js
-
-$(window).scroll(function() {
-    var footerHeight = $('#footer').outerHeight();
-    var scrollTop = $(window).scrollTop();
-    var windowHeight = $(window).height();
-    var scrollBottom = scrollTop + windowHeight;
-
-    if ((scrollBottom + footerHeight) >= $(document).height()) {
-        $('#footer').removeClass('hidden');
-    } else {
-        $('#footer').addClass('hidden');
-    }
 });

@@ -7,6 +7,7 @@ class PersistentLoginMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
+        # Update session expiry for authenticated users
         if request.user.is_authenticated:
             request.session.set_expiry(settings.SESSION_COOKIE_AGE)
         return self.get_response(request)

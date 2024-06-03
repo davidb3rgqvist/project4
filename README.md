@@ -118,6 +118,7 @@ As we chart the course for future development, we've identified key areas that c
 - **Security Measures:** Fortify the platform with robust security measures. Safeguard user data, mitigate potential vulnerabilities, and proactively prevent security breaches to uphold user trust.
 
 By embracing these strategic steps, our vision for Foorky is not just a web app but a dynamic hub for recipe management and culinary exploration. This roadmap emphasizes user-centric design, feature richness, accessibility, continuous improvement, community engagement, and robust security. As we embark on this journey, we remain committed to delivering a culinary experience that exceeds expectations.
+
 ## Future Features
 
 We plan to enhance the website with the following features:
@@ -167,7 +168,25 @@ Testing was an integral part of the website development process. We performed co
 
 ## Development
 
-<!-- for developers... -->
+If you're a developer looking to contribute to the Foorky project or get started with local development, follow these steps:
+
+1. **Clone the Repository:** Start by cloning the Foorky GitHub repository to your local machine using the following command:
+
+2. **Set Up Environment:** Navigate to the project directory and create a virtual environment for Python. Activate the virtual environment and install project dependencies using pip:
+
+3. **Database Configuration:** Foorky uses PostgreSQL as its database backend. Set up a local PostgreSQL database and configure the database connection settings in the `settings.py` file.
+
+4. **Apply Migrations:** Run database migrations to create the necessary database schema:
+
+5. **Create Superuser (Optional):** If you want to access the Django admin interface, create a superuser account:
+
+6. **Run Development Server:** Start the Django development server to run the Foorky web application locally:
+
+7. **Access Local Version:** Open your web browser and navigate to `http://127.0.0.1:8000` to access the local version of the Foorky web application.
+
+8. **Start Coding:** You're all set to start coding! Make changes to the codebase, add new features, fix bugs, and contribute to the Foorky project. Don't forget to create a new branch for your changes and submit pull requests for review.
+
+For more detailed information on contributing to the Foorky project, including coding conventions, workflow guidelines, and best practices, refer to the project's documentation and README file on GitHub.
 
 ## Deployment
 
