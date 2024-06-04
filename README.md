@@ -173,6 +173,11 @@ Testing was an integral part of the website development process. We performed co
 - [Manual testing table](testing.md)
 - [pep8 linter test](static/doc/pep8-linter-test.png)
 - [css validation](static/doc/css-validation.png)
+- [JavaScript validation](static/doc/js-validation.png)
+
+### Known issues
+
+- [HTML validation](static/doc/HTML-validation-sample.png) Django related issues shows up in the validation
 
 ## Development
 
