@@ -11,16 +11,15 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from .settings import *
 import os
 import dj_database_url
+
 if os.path.isfile('env.py'):
     from env import *
 
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -34,12 +33,11 @@ DEBUG = False
 ALLOWED_HOSTS = [
     '.herokuapp.com',
     '127.0.0.1:8000',
-    '8000-davidb3rgqvist-project4-5qsxfwrtxno.ws-eu114.gitpod.io' 
+    '8000-davidb3rgqvist-project4-5qsxfwrtxno.ws-eu114.gitpod.io'
 ]
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
-
 
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-davidb3rgqvist-project4-5qsxfwrtxno.ws-eu114.gitpod.io',
@@ -51,7 +49,6 @@ CSRF_TRUSTED_ORIGINS = [
 SESSION_COOKIE_AGE = 86400
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -98,20 +95,27 @@ TEMPLATES = [
     },
 ]
 
-
 WSGI_APPLICATION = 'recipe_app.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
+# Database configuration
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'your_existing_test_db_name',
+        'USER': 'your_db_user',
+        'PASSWORD': 'your_db_password',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
 }
+
+# If DATABASE_URL environment variable is set
+# (indicating a production environment), use it
+if 'DATABASE_URL' in os.environ:
+    DATABASES['default'] = dj_database_url.parse(os.environ.get("DATABASE_URL"))
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -127,18 +131,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
@@ -148,14 +146,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
-
-
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'

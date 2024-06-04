@@ -2,6 +2,7 @@ from django import forms
 from recipe.models import Recipe, Comment
 
 
+# Custom widget for integrating Summernote WYSIWYG editor into forms
 class SimpleSummernoteWidget(forms.Textarea):
     """
     Custom widget for integrating Summernote WYSIWYG editor into forms.
@@ -20,6 +21,7 @@ class SimpleSummernoteWidget(forms.Textarea):
         self.attrs['class'] = 'form-control simple-summernote'
 
 
+# Form for creating or updating Recipe instances
 class RecipeForm(forms.ModelForm):
     """
     Form for creating or updating Recipe instances.
@@ -36,7 +38,8 @@ class RecipeForm(forms.ModelForm):
             'ingredients': SimpleSummernoteWidget(),
         }
 
-    
+
+# Form for creating comments on Recipe instances
 class CommentForm(forms.ModelForm):
     """
     Form for creating comments on Recipe instances.
@@ -45,11 +48,13 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ['text']
         widgets = {
-            'text': forms.Textarea(attrs={
-                'class': 'form-control mt-3',
-                'id': 'comment',
-                'name': 'comment',
-                'rows': 5,
-                'placeholder': 'Add a comment...'
-            }),
+            'text': forms.Textarea(
+                attrs={
+                    'class': 'form-control mt-3',
+                    'id': 'comment',
+                    'name': 'comment',
+                    'rows': 5,
+                    'placeholder': 'Add a comment...'
+                }
+            ),
         }

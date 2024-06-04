@@ -20,11 +20,14 @@ class LoginRequiredMiddleware:
             self.excluded_paths = []
 
     def __call__(self, request):
-        if not request.user.is_authenticated and not self._is_excluded_path(request.path):
-            logger.debug(f"Unauthenticated access attempt to {request.path}. Redirecting to login.")
+        if not request.user.is_authenticated and not \
+                self._is_excluded_path(request.path):
+            logger.debug(f"Unauthenticated access attempt to " \
+                         f"{request.path}. Redirecting to login.")
             return redirect('login')
         return self.get_response(request)
 
     def _is_excluded_path(self, path):
         logger.debug(f"Checking if path {path} is excluded.")
-        return any(path == excluded_path for excluded_path in self.excluded_paths)
+        return any(path == excluded_path for excluded_path in \
+                   self.excluded_paths)

@@ -171,6 +171,8 @@ Testing was an integral part of the website development process. We performed co
 
 - [Responsiveness overview](static/doc/responsive-test.png)
 - [Manual testing table](testing.md)
+- [pep8 linter test](static/doc/pep8-linter-test.png)
+- [css validation](static/doc/css-validation.png)
 
 ## Development
 

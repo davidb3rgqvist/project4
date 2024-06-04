@@ -17,7 +17,7 @@ def recipe_detail(request, recipe_id):
     comments = recipe.comments.all()
     comment_form = CommentForm()
     is_saved = CookbookEntry.objects.filter(user=request.user, recipe=recipe).exists()
-    return render(request, 'recipe/recipe_detail.html', {'recipe': recipe, 'comments': comments, 'comment_form': comment_form, 'is_saved': is_saved,})
+    return render(request, 'recipe/recipe_detail.html', {'recipe': recipe, 'comments': comments, 'comment_form': comment_form, 'is_saved': is_saved})
 
 
 def recipe_list(request):
@@ -188,6 +188,3 @@ def unsave_from_cookbook(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
     CookbookEntry.objects.filter(user=request.user, recipe=recipe).delete()
     return redirect('recipe_detail', recipe_id=recipe_id)
-
-
-   

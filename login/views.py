@@ -7,6 +7,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 def register_view(request):
     """
     Let users to register as a user
@@ -33,9 +34,9 @@ def login_view(request):
             return redirect('home_view')
     else:
         form = AuthenticationForm()
-    
+
     reload_modal = bool(form.errors)
-    return render(request, 'registration/login.html', {'form': form, 'reload_modal': reload_modal})
+    return render(request, 'registration/login.html', locals())
 
 
 def logout_view(request):
